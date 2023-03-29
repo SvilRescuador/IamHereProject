@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">I\'mHereProject</string>
+
+    <string-array name="spinner_items">
+        <item>Blood Type</item>
+        <item>A Rh+</item>
+        <item>A Rh-</item>
+        <item>B Rh+</item>
+        <item>B Rh-</item>
+        <item>AB Rh+</item>
+        <item>AB Rh-</item>
+        <item>0 Rh+</item>
+        <item>0 Rh-</item>
+    </string-array>
+
+</resources>
+

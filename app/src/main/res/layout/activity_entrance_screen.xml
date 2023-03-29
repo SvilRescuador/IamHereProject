@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EntranceScreen">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="219dp"
+        android:layout_height="161dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/image_2" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="319dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName3"
+        android:layout_width="319dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Surname"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName4"
+        android:layout_width="319dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Tc Kimlik"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName6"
+        android:layout_width="319dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Phone Number"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="319dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="asd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="129dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#C61313"
+        android:text="Sign Up"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
