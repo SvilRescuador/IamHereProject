@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.furkanozek.imhereproject.MainActivity;
 import com.furkanozek.imhereproject.R;
+import com.furkanozek.imhereproject.adresGuncelle;
 
 public class HelpMe1 extends AppCompatActivity {
 
@@ -26,8 +27,9 @@ public class HelpMe1 extends AppCompatActivity {
 
     }
 
-    public void adresGuncelle(View view){
-
+    public void abc(View view){
+        Intent intent1 = new Intent(HelpMe1.this, adresGuncelle.class);
+        startActivity(intent1);
     }
 
 
