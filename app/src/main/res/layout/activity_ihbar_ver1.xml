@@ -6,14 +6,91 @@
     android:layout_height="match_parent"
     tools:context=".IhbarVer.IhbarVer1">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="159dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="215dp"
-        android:gravity="center"
-        android:text="IhbarVer"
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="319dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="15dp"
+        android:contentDescription="asd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName12"></Spinner>
+
+    <Spinner
+        android:id="@+id/spinner5"
+        android:layout_width="319dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="15dp"
+        android:contentDescription="asd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner6"></Spinner>
+
+    <Spinner
+        android:id="@+id/spinner7"
+        android:layout_width="319dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="15dp"
+        android:contentDescription="asd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner5"></Spinner>
+
+    <Spinner
+        android:id="@+id/spinner6"
+        android:layout_width="319dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="15dp"
+        android:contentDescription="asd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner"></Spinner>
+
+    <EditText
+        android:id="@+id/editTextTextPersonName10"
+        android:layout_width="328dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name-Surname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName12"
+        android:layout_width="328dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Phone Number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName10" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="141dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="5dp"
+        android:text="Make Notice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName14" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName14"
+        android:layout_width="290dp"
+        android:layout_height="112dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:gravity="bottom|left"
+        android:hint="Open Adress"
+        android:inputType="textPersonName"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner7" />
 </androidx.constraintlayout.widget.ConstraintLayout>
