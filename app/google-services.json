@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "405700595867",
+    "project_id": "i-mhereproject",
+    "storage_bucket": "i-mhereproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:405700595867:android:311471e9c80ac25433763e",
+        "android_client_info": {
+          "package_name": "com.furkanozek.imhereproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "405700595867-8uhbhltn7glfnh0gmpn1qhq9q6h4bo8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcMIU3ydUOeYURLuyeGVw8eLLvB5jtMvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "405700595867-8uhbhltn7glfnh0gmpn1qhq9q6h4bo8o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
