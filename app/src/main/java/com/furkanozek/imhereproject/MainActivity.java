@@ -2,7 +2,9 @@ package com.furkanozek.imhereproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -13,10 +15,18 @@ import com.furkanozek.imhereproject.IhbarVer.IhbarVer1;
 
 public class MainActivity extends AppCompatActivity {
 
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sharedPreferences = this.getSharedPreferences("com.furkanozek.imhereproject", Context.MODE_PRIVATE);
+
+        if (!sharedPreferences.getBoolean("hasSavedInfo",false)) {
+            Intent intent = new Intent(MainActivity.this, EntranceScreen.class);
+            startActivity(intent);
+        }
     }
 
     public void helpMe(View view){
