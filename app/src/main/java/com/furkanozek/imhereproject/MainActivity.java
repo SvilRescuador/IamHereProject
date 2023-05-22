@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 
 import com.furkanozek.imhereproject.Bilgilerim.Bilgilerim;
@@ -18,15 +19,14 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        sharedPreferences = this.getSharedPreferences("com.furkanozek.imhereproject", Context.MODE_PRIVATE);
-
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (!sharedPreferences.getBoolean("hasSavedInfo",false)) {
             Intent intent = new Intent(MainActivity.this, EntranceScreen.class);
             startActivity(intent);
         }
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
     }
 
     public void helpMe(View view){
