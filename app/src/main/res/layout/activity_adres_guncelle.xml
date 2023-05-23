@@ -4,56 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#C61313"
     tools:context=".adresGuncelle">
 
 
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="386dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="30dp"
+        android:contentDescription="il"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Spinner
-            android:id="@+id/spinner2"
-            android:contentDescription="il"
-            android:layout_width="386dp"
-            android:layout_height="59dp"
-            android:layout_marginTop="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <Spinner
+        android:id="@+id/spinner3"
+        android:layout_width="386dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="40dp"
+        android:contentDescription="ilce"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
 
-        <Spinner
-            android:id="@+id/spinner3"
-            android:layout_width="386dp"
-            android:contentDescription="ilce"
-            android:layout_height="59dp"
-            android:layout_marginTop="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner2" />
-
-        <Spinner
-            android:id="@+id/spinner4"
-            android:layout_width="386dp"
-            android:contentDescription="mahalle"
-            android:layout_height="59dp"
-            android:layout_marginTop="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner3" />
+    <Spinner
+        android:id="@+id/spinner4"
+        android:layout_width="386dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="40dp"
+        android:contentDescription="mahalle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner3" />
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
         android:layout_width="285dp"
         android:layout_height="176dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
-        android:gravity="bottom|left"
+        android:gravity="center"
         android:hint="Street and Building Name"
         android:inputType="textPersonName"
-        android:textSize="28sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner4" />
 
-
-
+    <Button
+        android:id="@+id/Save1"
+        android:layout_width="134dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#BC2727"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
