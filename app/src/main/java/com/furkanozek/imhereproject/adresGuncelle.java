@@ -2,10 +2,14 @@ package com.furkanozek.imhereproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 
@@ -13,10 +17,15 @@ public class adresGuncelle extends AppCompatActivity  {
 
     static boolean citySelected;
     static boolean districtSelected;
+    SharedPreferences sharedPreferences;
+    private static int neighborhoodCode = 0;
+    EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adres_guncelle);
+        sharedPreferences = getSharedPreferences(EntranceScreen.MyPREFERENCES, Context.MODE_PRIVATE);
+        editText = findViewById(R.id.editTextTextPersonName2);
 
         citySelected = false;
         districtSelected = false;
@@ -44,12 +53,15 @@ public class adresGuncelle extends AppCompatActivity  {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 if(selectedItem.equals("Ankara")) {
                     spinner3.setAdapter(adapter1);
+                    neighborhoodCode = 10;
                 }
                 else if(selectedItem.equals("Manisa")) {
                     spinner3.setAdapter(adapter2);
+                    neighborhoodCode = 10;
                 }
                 else if(selectedItem.equals("Tokat")) {
                     spinner3.setAdapter(adapter3);
+                    neighborhoodCode = 10;
                 }
             }
 
@@ -66,12 +78,48 @@ public class adresGuncelle extends AppCompatActivity  {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 if(selectedItem.equals("Çankaya") || selectedItem.equals("Akhisar") || selectedItem.equals("Niksar")) {
                     spinner4.setAdapter(adapter4);
+                    neighborhoodCode = neighborhoodCode * 100;
+                    neighborhoodCode += 1;
                 }
+
                 else if(selectedItem.equals("Gölbaşı") || selectedItem.equals("Saruhanlı") || selectedItem.equals("Turhal")) {
                     spinner4.setAdapter(adapter5);
+                    neighborhoodCode = neighborhoodCode * 100;
+                    neighborhoodCode += 2;
                 }
                 else if(selectedItem.equals("Beypazarı") || selectedItem.equals("Şehzadeler") || selectedItem.equals("Erbaa")) {
                     spinner4.setAdapter(adapter6);
+                    neighborhoodCode = neighborhoodCode * 100;
+                    neighborhoodCode += 3;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        }
+
+        class neigborhoodListener implements AdapterView.OnItemSelectedListener {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                if(selectedItem.equals("Atatürk Mahallesi") || selectedItem.equals("Cumhuriyet Mahallesi") || selectedItem.equals("Karşıyaka Mahallesi")) {
+
+                    neighborhoodCode = neighborhoodCode * 100;
+                    neighborhoodCode += 1;
+                }
+
+                else if(selectedItem.equals("15 Temmuz Mahallesi") || selectedItem.equals("Hürriyet Mahallesi") || selectedItem.equals("Milliyet Mahallesi")) {
+
+                    neighborhoodCode = neighborhoodCode * 100;
+                    neighborhoodCode += 2;
+                }
+                else if(selectedItem.equals("Ulu Cami Mahallesi") || selectedItem.equals("Yıldırım Mahallesi") || selectedItem.equals("Fevzi Çakmak Mahallesi")) {
+
+                    neighborhoodCode = neighborhoodCode * 100;
+                    neighborhoodCode += 3;
                 }
             }
 
@@ -86,6 +134,8 @@ public class adresGuncelle extends AppCompatActivity  {
         spinner2.setOnItemSelectedListener(cityListener);
         districtListener districtListener = new districtListener();
         spinner3.setOnItemSelectedListener(districtListener);
+        neigborhoodListener neigborhoodListener = new neigborhoodListener();
+        spinner4.setOnItemSelectedListener(neigborhoodListener);
 
 
 
@@ -120,6 +170,14 @@ public class adresGuncelle extends AppCompatActivity  {
         spinner2.setAdapter(adapter);
 
 
+    }
+
+    public void save() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("NeighborhoodCode", neighborhoodCode);
+        editor.putString("BuildingName", editText.getText().toString());
+        Intent intent = new Intent(adresGuncelle.this, MainActivity.class);
+        startActivity(intent);
     }
 
 

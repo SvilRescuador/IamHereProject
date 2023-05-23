@@ -85,6 +85,7 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
         editor.putBoolean("hasSavedInfo", true).apply();
         Intent intent = new Intent(EntranceScreen.this, adresGuncelle.class);
         startActivity(intent);
+
     }
 }
 
