@@ -45,7 +45,7 @@
         android:layout_marginTop="60dp"
         android:ems="10"
         android:gravity="bottom|left"
-        android:hint="Open Adress"
+        android:hint="Street and Building Name"
         android:inputType="textPersonName"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"

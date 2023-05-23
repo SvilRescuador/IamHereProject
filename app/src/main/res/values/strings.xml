@@ -15,23 +15,51 @@
 
     <string-array name="spinner_items1">
         <item>City</item>
-        <item>A</item>
-        <item>B</item>
-        <item>C</item>
+        <item>Ankara</item>
+        <item>Manisa</item>
+        <item>Tokat</item>
     </string-array>
 
-    <string-array name="spinner_items2">
+    <string-array name="spinner_itemsAnkara">
         <item>District</item>
-        <item>D</item>
-        <item>E</item>
-        <item>F</item>
+        <item>Çankaya</item>
+        <item>Gölbaşı</item>
+        <item>Beypazarı</item>
     </string-array>
 
-    <string-array name="spinner_items3">
+    <string-array name="spinner_itemsManisa">
+        <item>District</item>
+        <item>Akhisar</item>
+        <item>Saruhanlı</item>
+        <item>Şehzadeler</item>
+    </string-array>
+
+    <string-array name="spinner_itemsTokat">
+        <item>District</item>
+        <item>Niksar</item>
+        <item>Turhal</item>
+        <item>Erbaa</item>
+    </string-array>
+
+    <string-array name="spinner_items1ilceler">
         <item>Neighbourhood</item>
         <item>Atatürk Mahallesi</item>
         <item>Cumhuriyet Mahallesi</item>
         <item>Karşıyaka Mahallesi</item>
+    </string-array>
+
+    <string-array name="spinner_items2ilceler">
+        <item>Neighbourhood</item>
+        <item>15 Temmuz Mahallesi</item>
+        <item>Hürriyet Mahallesi</item>
+        <item>Milliyet Mahallesi</item>
+    </string-array>
+
+    <string-array name="spinner_items3ilceler">
+        <item>Neighbourhood</item>
+        <item>Ulu Cami Mahallesi</item>
+        <item>Yıldırım Mahallesi</item>
+        <item>Fevzi Çakmak Mahallesi</item>
     </string-array>
 
 

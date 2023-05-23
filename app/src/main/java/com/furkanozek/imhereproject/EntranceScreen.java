@@ -65,7 +65,6 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
         // Do something with the selected item
         if(!selectedItem.equals("Blood Type")){
             bloodType = selectedItem;
-            Toast.makeText(parent.getContext(), "Selected: " + selectedItem, Toast.LENGTH_LONG).show();
         }
 
     }
@@ -84,8 +83,7 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
         editor.putString("PhoneNumber", phoneNumber.getText().toString()).apply();
         editor.putString("BloodType", bloodType).apply();
         editor.putBoolean("hasSavedInfo", true).apply();
-        Toast.makeText(this, "Selected: " + sharedPreferences.getString("Name", ""), Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(EntranceScreen.this, MainActivity.class);
+        Intent intent = new Intent(EntranceScreen.this, adresGuncelle.class);
         startActivity(intent);
     }
 }

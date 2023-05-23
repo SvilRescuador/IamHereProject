@@ -28,7 +28,7 @@ public class GuncelIhbar extends AppCompatActivity implements AdapterView.OnItem
         spinner4.setOnItemSelectedListener(this);
 
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
-                R.array.spinner_items3, android.R.layout.simple_spinner_item);
+                R.array.spinner_items, android.R.layout.simple_spinner_item);
 
         // Specify the layout to use when the list of choices appears
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -36,7 +36,7 @@ public class GuncelIhbar extends AppCompatActivity implements AdapterView.OnItem
 
 
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
-                R.array.spinner_items2, android.R.layout.simple_spinner_item);
+                R.array.spinner_items1, android.R.layout.simple_spinner_item);
 
         // Apply the adapter to the spinner
         spinner3.setAdapter(adapter1);
