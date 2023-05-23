@@ -21,14 +21,22 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
     EditText ID;
     EditText phoneNumber;
     SharedPreferences sharedPreferences;
-
+    public static final String MyPREFERENCES = "MyPrefs";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrance_screen);
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        if (sharedPreferences.getBoolean("hasSavedInfo",false)) {
+            Intent intent = new Intent(EntranceScreen.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
         name = findViewById(R.id.editTextTextPersonName);
         surname = findViewById(R.id.editTextTextPersonName3);
         ID = findViewById(R.id.editTextTextPersonName4);
@@ -68,7 +76,7 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
     }
 
     public void signUp (View view) {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("Name", name.getText().toString()).apply();
         editor.putString("Surname", surname.getText().toString()).apply();

@@ -17,13 +17,11 @@ import com.furkanozek.imhereproject.IhbarVer.IhbarVer1;
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (!sharedPreferences.getBoolean("hasSavedInfo",false)) {
-            Intent intent = new Intent(MainActivity.this, EntranceScreen.class);
-            startActivity(intent);
-        }
+        sharedPreferences = getSharedPreferences(EntranceScreen.MyPREFERENCES, Context.MODE_PRIVATE);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
