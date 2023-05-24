@@ -16,9 +16,10 @@ import android.widget.Spinner;
 public class adresGuncelle extends AppCompatActivity  {
 
     static boolean citySelected;
+    static final String nCode = "nCode";
     static boolean districtSelected;
     SharedPreferences sharedPreferences;
-    private static int neighborhoodCode = 0;
+    private static int neighborhoodCode = 10;
     EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,12 +112,12 @@ public class adresGuncelle extends AppCompatActivity  {
                     neighborhoodCode += 1;
                 }
 
-                else if(selectedItem.equals("15 Temmuz Mahallesi") || selectedItem.equals("Hürriyet Mahallesi") || selectedItem.equals("Milliyet Mahallesi")) {
+                else if(selectedItem.equals("Kazım Karabekir Mahallesi") || selectedItem.equals("Hürriyet Mahallesi") || selectedItem.equals("Milliyet Mahallesi")) {
 
                     neighborhoodCode = neighborhoodCode * 100;
                     neighborhoodCode += 2;
                 }
-                else if(selectedItem.equals("Ulu Cami Mahallesi") || selectedItem.equals("Yıldırım Mahallesi") || selectedItem.equals("Fevzi Çakmak Mahallesi")) {
+                else if(selectedItem.equals("Ulucami Mahallesi") || selectedItem.equals("Yıldırım Mahallesi") || selectedItem.equals("Fevzi Çakmak Mahallesi")) {
 
                     neighborhoodCode = neighborhoodCode * 100;
                     neighborhoodCode += 3;
@@ -174,8 +175,8 @@ public class adresGuncelle extends AppCompatActivity  {
 
     public void save(View view) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("NeighborhoodCode", neighborhoodCode);
-        editor.putString("BuildingName", editText.getText().toString());
+        editor.putInt(nCode, neighborhoodCode).apply();
+        editor.putString("BuildingName", editText.getText().toString()).apply();
         Intent intent = new Intent(adresGuncelle.this, MainActivity.class);
         startActivity(intent);
     }

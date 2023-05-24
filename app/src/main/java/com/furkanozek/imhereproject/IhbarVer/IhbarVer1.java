@@ -2,6 +2,7 @@ package com.furkanozek.imhereproject.IhbarVer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,74 +11,143 @@ import android.widget.Spinner;
 
 import com.furkanozek.imhereproject.R;
 
-public class IhbarVer1 extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class IhbarVer1 extends AppCompatActivity {
 
+    private static int neighborhoodCode;
+    private static String bloodType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ihbar_ver1);
-
-        // Initialize the Spinner
+        neighborhoodCode = 0;
 
         Spinner spinner = findViewById(R.id.spinner);
-        spinner.setOnItemSelectedListener(this);
-
         Spinner spinner2 = findViewById(R.id.spinner6);
-        spinner2.setOnItemSelectedListener(this);
-
         Spinner spinner3 = findViewById(R.id.spinner5);
-        spinner3.setOnItemSelectedListener(this);
-
         Spinner spinner4 = findViewById(R.id.spinner7);
-        spinner4.setOnItemSelectedListener(this);
-
-        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
-                R.array.spinner_items, android.R.layout.simple_spinner_item);
-
-        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner.setAdapter(adapter3);
-
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
-                R.array.spinner_items, android.R.layout.simple_spinner_item);
-
-        // Specify the layout to use when the list of choices appears
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-
-
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
-                R.array.spinner_items1, android.R.layout.simple_spinner_item);
+                R.array.spinner_itemsAnkara, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.spinner_itemsManisa, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
+                R.array.spinner_itemsTokat, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this,
+                R.array.spinner_items1ilceler, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter5 = ArrayAdapter.createFromResource(this,
+                R.array.spinner_items2ilceler, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter6 = ArrayAdapter.createFromResource(this,
+                R.array.spinner_items3ilceler, android.R.layout.simple_spinner_item);
+        class cityListener implements AdapterView.OnItemSelectedListener {
 
-        // Apply the adapter to the spinner
-        spinner3.setAdapter(adapter1);
-
-        // Specify the layout to use when the list of choices appears
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                if(selectedItem.equals("Ankara")) {
+                    spinner3.setAdapter(adapter1);
+                    neighborhoodCode = 10;
+                }
+                else if(selectedItem.equals("Manisa")) {
+                    spinner3.setAdapter(adapter2);
+                    neighborhoodCode = 10;
+                }
+                else if(selectedItem.equals("Tokat")) {
+                    spinner3.setAdapter(adapter3);
+                    neighborhoodCode = 10;
+                }
+            }
 
-        spinner4.setAdapter(adapter2);
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.spinner_items1, android.R.layout.simple_spinner_item);
+            }
+        }
 
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        class districtListener implements AdapterView.OnItemSelectedListener {
 
-        // Apply the adapter to the spinner
-        spinner2.setAdapter(adapter);
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                if(selectedItem.equals("Çankaya") || selectedItem.equals("Akhisar") || selectedItem.equals("Niksar")) {
+                    spinner4.setAdapter(adapter4);
+                    neighborhoodCode = neighborhoodCode * 100;
+                    neighborhoodCode += 1;
+                }
 
-    }
+                else if(selectedItem.equals("Gölbaşı") || selectedItem.equals("Saruhanlı") || selectedItem.equals("Turhal")) {
+                    spinner4.setAdapter(adapter5);
+                    neighborhoodCode = neighborhoodCode * 100;
+                    neighborhoodCode += 2;
+                }
+                else if(selectedItem.equals("Beypazarı") || selectedItem.equals("Şehzadeler") || selectedItem.equals("Erbaa")) {
+                    spinner4.setAdapter(adapter6);
+                    neighborhoodCode = neighborhoodCode * 100;
+                    neighborhoodCode += 3;
+                }
+            }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-    }
+            }
+        }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+        class neigborhoodListener implements AdapterView.OnItemSelectedListener {
 
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                if(selectedItem.equals("Atatürk Mahallesi") || selectedItem.equals("Cumhuriyet Mahallesi") || selectedItem.equals("Karşıyaka Mahallesi")) {
+
+                    neighborhoodCode = neighborhoodCode * 100;
+                    neighborhoodCode += 1;
+                }
+
+                else if(selectedItem.equals("15 Temmuz Mahallesi") || selectedItem.equals("Hürriyet Mahallesi") || selectedItem.equals("Milliyet Mahallesi")) {
+
+                    neighborhoodCode = neighborhoodCode * 100;
+                    neighborhoodCode += 2;
+                }
+                else if(selectedItem.equals("Ulu Cami Mahallesi") || selectedItem.equals("Yıldırım Mahallesi") || selectedItem.equals("Fevzi Çakmak Mahallesi")) {
+
+                    neighborhoodCode = neighborhoodCode * 100;
+                    neighborhoodCode += 3;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        }
+        // Initialize the Spinner
+
+       class bloodTypeListener implements AdapterView.OnItemSelectedListener {
+           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+               // Get the selected item's text
+               String selectedItem = parent.getItemAtPosition(position).toString();
+
+               // Do something with the selected item
+               if(!selectedItem.equals("Blood Type")){
+                   bloodType = selectedItem;
+               }
+
+           }
+
+           @Override
+           public void onNothingSelected(AdapterView<?> parent) {
+               // Do nothing
+           }
+       }
+
+        bloodTypeListener bloodTypeListener = new bloodTypeListener();
+        spinner.setOnItemSelectedListener(bloodTypeListener);
+        cityListener cityListener = new cityListener();
+        spinner2.setOnItemSelectedListener(cityListener);
+        districtListener districtListener = new districtListener();
+        spinner3.setOnItemSelectedListener(districtListener);
+        neigborhoodListener neigborhoodListener = new neigborhoodListener();
+        spinner4.setOnItemSelectedListener(neigborhoodListener);
     }
 }

@@ -25,18 +25,22 @@ public class Bilgilerim extends AppCompatActivity {
         TextView name = findViewById(R.id.textView2);
         TextView bloodType = findViewById(R.id.textView9);
         TextView ID = findViewById(R.id.textView11);
+        TextView address = findViewById(R.id.textView3);
         phoneNumber = findViewById(R.id.editTextPhone2);
 
+        int nCode = sharedPreferences.getInt(adresGuncelle.nCode,0);
         name.setText(sharedPreferences.getString("Name",null) + " " + sharedPreferences.getString("Surname", null));
         bloodType.setText(sharedPreferences.getString("BloodType", null));
         ID.setText(sharedPreferences.getString("ID", null));
+        /*address.setText(newAddress.findCityByCode(nCode) + " " + newAddress.findDistrictByCode(nCode) + " " + newAddress.findNeighborhoodByCode(nCode) +
+                sharedPreferences.getString("BuildingName", null));*/
+
         phoneNumber.setText(sharedPreferences.getString("PhoneNumber", null));
     }
 
     public void changeAddress(View view) {
         Intent intent = new Intent(Bilgilerim.this, adresGuncelle.class);
         startActivity(intent);
-
     }
 
     public void updateCred(View view) {
@@ -45,6 +49,5 @@ public class Bilgilerim extends AppCompatActivity {
         //phoneNumber.setText(sharedPreferences.getString("PhoneNumber", null));
         Intent intent = new Intent(Bilgilerim.this, MainActivity.class);
         startActivity(intent);
-
     }
 }
