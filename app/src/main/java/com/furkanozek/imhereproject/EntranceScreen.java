@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class EntranceScreen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+
     private static String bloodType;
     EditText name;
     EditText surname;

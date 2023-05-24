@@ -172,7 +172,7 @@ public class adresGuncelle extends AppCompatActivity  {
 
     }
 
-    public void save() {
+    public void save(View view) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("NeighborhoodCode", neighborhoodCode);
         editor.putString("BuildingName", editText.getText().toString());

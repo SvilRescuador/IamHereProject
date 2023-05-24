@@ -6,8 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.furkanozek.imhereproject.GuncelIhbar.GuncelIhbar;
 
 public class Bilgilerim extends AppCompatActivity {
 
@@ -30,13 +33,13 @@ public class Bilgilerim extends AppCompatActivity {
         phoneNumber.setText(sharedPreferences.getString("PhoneNumber", null));
     }
 
-    public void changeAddress() {
+    public void changeAddress(View view) {
         Intent intent = new Intent(Bilgilerim.this, adresGuncelle.class);
         startActivity(intent);
 
     }
 
-    public void updateCred() {
+    public void updateCred(View view) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("PhoneNumber", phoneNumber.getText().toString()).apply();
         //phoneNumber.setText(sharedPreferences.getString("PhoneNumber", null));
