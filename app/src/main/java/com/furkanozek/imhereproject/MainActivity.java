@@ -6,10 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 
-import com.furkanozek.imhereproject.Bilgilerim.Bilgilerim;
 import com.furkanozek.imhereproject.GuncelIhbar.GuncelIhbar;
 import com.furkanozek.imhereproject.HelpMe.HelpMe1;
 import com.furkanozek.imhereproject.IhbarVer.IhbarVer1;

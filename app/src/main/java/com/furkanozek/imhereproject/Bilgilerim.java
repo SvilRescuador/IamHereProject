@@ -1,21 +1,13 @@
-package com.furkanozek.imhereproject.Bilgilerim;
+package com.furkanozek.imhereproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.furkanozek.imhereproject.EntranceScreen;
-import com.furkanozek.imhereproject.MainActivity;
-import com.furkanozek.imhereproject.R;
-import com.furkanozek.imhereproject.adresGuncelle;
 
 public class Bilgilerim extends AppCompatActivity {
 
