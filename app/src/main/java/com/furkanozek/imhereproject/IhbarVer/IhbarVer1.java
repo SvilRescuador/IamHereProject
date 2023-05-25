@@ -25,6 +25,10 @@ public class IhbarVer1 extends AppCompatActivity {
         Spinner spinner2 = findViewById(R.id.spinner6);
         Spinner spinner3 = findViewById(R.id.spinner5);
         Spinner spinner4 = findViewById(R.id.spinner7);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.spinner_items, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter0 = ArrayAdapter.createFromResource(this,
+                R.array.spinner_items1, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
                 R.array.spinner_itemsAnkara, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
@@ -141,6 +145,8 @@ public class IhbarVer1 extends AppCompatActivity {
            }
        }
 
+        spinner.setAdapter(adapter);
+        spinner2.setAdapter(adapter0);
         bloodTypeListener bloodTypeListener = new bloodTypeListener();
         spinner.setOnItemSelectedListener(bloodTypeListener);
         cityListener cityListener = new cityListener();

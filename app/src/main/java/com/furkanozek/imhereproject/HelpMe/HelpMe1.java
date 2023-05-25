@@ -23,7 +23,7 @@ public class HelpMe1 extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void guncelAdresiKullan(){
+    public void guncelAdresiKullan(View view){
 
     }
 
