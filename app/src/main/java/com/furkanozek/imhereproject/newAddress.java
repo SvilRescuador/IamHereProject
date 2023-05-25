@@ -50,17 +50,30 @@ public class newAddress {
 
     public static String findNeighborhoodByCode (int nCode) {
         int n = nCode / 100;
-        return neighborhoods[(n % 10) - 1][(nCode % 10) - 1];
+        String answer = neighborhoods[(n % 10) - 1][(nCode % 10) - 1];
+        return answer;
     }
 
     public static String findDistrictByCode (int nCode) {
         int a = nCode / 10000;
         int b = nCode / 100;
-        return districs[a - 10][b - 1];
+        String answer = districs[a - 10][b - 1];
+        return answer;
     }
 
     public static String findCityByCode (int nCode) {
         int a = nCode / 10000;
-        return cities[a - 10];
+        String answer = cities[a - 10];
+        return answer;
+    }
+
+    public static String printAddress(int nCode){
+        int n = nCode / 100;
+        String neigborhood = new String(neighborhoods[(n % 10) - 1][(nCode % 10) - 1]);
+        int p = n / 100;
+        String district = new String(districs[p - 10][(n % 10) - 1]);
+        String city = new String(cities[p - 10]);
+        String answer = neigborhood + " " + district + " " + city + " ";
+        return answer;
     }
 }

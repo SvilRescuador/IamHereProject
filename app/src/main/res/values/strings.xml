@@ -50,14 +50,14 @@
 
     <string-array name="spinner_items2ilceler">
         <item>Neighbourhood</item>
-        <item>15 Temmuz Mahallesi</item>
+        <item>Kazım Karabekir Mahallesi</item>
         <item>Hürriyet Mahallesi</item>
         <item>Milliyet Mahallesi</item>
     </string-array>
 
     <string-array name="spinner_items3ilceler">
         <item>Neighbourhood</item>
-        <item>Ulu Cami Mahallesi</item>
+        <item>Ulucami Mahallesi</item>
         <item>Yıldırım Mahallesi</item>
         <item>Fevzi Çakmak Mahallesi</item>
     </string-array>

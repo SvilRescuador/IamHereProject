@@ -19,7 +19,7 @@ public class adresGuncelle extends AppCompatActivity  {
     static final String nCode = "nCode";
     static boolean districtSelected;
     SharedPreferences sharedPreferences;
-    private static int neighborhoodCode = 10;
+    private static int neighborhoodCode;
     EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +58,11 @@ public class adresGuncelle extends AppCompatActivity  {
                 }
                 else if(selectedItem.equals("Manisa")) {
                     spinner3.setAdapter(adapter2);
-                    neighborhoodCode = 10;
+                    neighborhoodCode = 11;
                 }
                 else if(selectedItem.equals("Tokat")) {
                     spinner3.setAdapter(adapter3);
-                    neighborhoodCode = 10;
+                    neighborhoodCode = 12;
                 }
             }
 
@@ -182,6 +182,9 @@ public class adresGuncelle extends AppCompatActivity  {
     }
 
 
+    public static int getNeighborhoodCode(){
+        return neighborhoodCode;
+    }
 
 
 }
