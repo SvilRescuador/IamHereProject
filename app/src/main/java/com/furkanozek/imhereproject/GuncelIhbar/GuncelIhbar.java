@@ -2,12 +2,14 @@ package com.furkanozek.imhereproject.GuncelIhbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.furkanozek.imhereproject.MainActivity;
 import com.furkanozek.imhereproject.R;
 
 public class GuncelIhbar extends AppCompatActivity {
@@ -162,5 +164,12 @@ public class GuncelIhbar extends AppCompatActivity {
 
     public void searchNotices (View view) {
 
+    }
+
+
+    public void back ( View view){
+        Intent intent = new Intent(GuncelIhbar.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

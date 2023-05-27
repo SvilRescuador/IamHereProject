@@ -181,6 +181,12 @@ public class adresGuncelle extends AppCompatActivity  {
         startActivity(intent);
     }
 
+    public void back(View view) {
+        Intent intent = new Intent(adresGuncelle.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 
     public static int getNeighborhoodCode(){
         return neighborhoodCode;

@@ -3,12 +3,14 @@ package com.furkanozek.imhereproject.IhbarVer;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.furkanozek.imhereproject.MainActivity;
 import com.furkanozek.imhereproject.R;
 
 public class IhbarVer1 extends AppCompatActivity {
@@ -155,5 +157,11 @@ public class IhbarVer1 extends AppCompatActivity {
         spinner3.setOnItemSelectedListener(districtListener);
         neigborhoodListener neigborhoodListener = new neigborhoodListener();
         spinner4.setOnItemSelectedListener(neigborhoodListener);
+    }
+
+    public void back ( View view){
+        Intent intent = new Intent(IhbarVer1.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

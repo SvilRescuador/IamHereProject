@@ -52,6 +52,12 @@ public class Bilgilerim extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void back(View view){
+        Intent intent = new Intent(Bilgilerim.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     /*private String decodeNCode(int nCode) {
         sharedPreferences = getSharedPreferences(EntranceScreen.MyPREFERENCES, Context.MODE_PRIVATE);
         String addressText = newAddress.findCityByCode(nCode) + " " + newAddress.findDistrictByCode(nCode) + " " + newAddress.findNeighborhoodByCode(nCode) +
