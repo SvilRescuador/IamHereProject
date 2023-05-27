@@ -5,10 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.furkanozek.imhereproject.MainActivity;
 import com.furkanozek.imhereproject.R;
@@ -17,10 +21,21 @@ public class IhbarVer1 extends AppCompatActivity {
 
     private static int neighborhoodCode;
     private static String bloodType;
+    EditText phoneNumber;
+    EditText nameSurname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ihbar_ver1);
+
+        /* phoneNumber.findViewById(R.id.editTextTextPersonName12);
+        nameSurname.findViewById(R.id.editTextTextPersonName10);
+
+
+        phoneNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
+        phoneNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(11) }); */
+
+
         neighborhoodCode = 0;
 
         Spinner spinner = findViewById(R.id.spinner);
@@ -163,5 +178,15 @@ public class IhbarVer1 extends AppCompatActivity {
         Intent intent = new Intent(IhbarVer1.this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void makeNotice( View view){
+        /* if(phoneNumber.getText().toString().length() != 11){
+            Toast.makeText(getApplicationContext(), "Please enter correct phone number", Toast.LENGTH_SHORT).show();
+        }else{
+
+        } */
+
+
     }
 }

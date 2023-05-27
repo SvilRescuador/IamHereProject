@@ -73,7 +73,7 @@ public class newAddress {
         int p = n / 100;
         String district = new String(districs[p - 10][(n % 10) - 1]);
         String city = new String(cities[p - 10]);
-        String answer = neigborhood + " " + district + " " + city + " ";
+        String answer = city+ " / " + district + " / " + neigborhood + " / ";
         return answer;
     }
 }

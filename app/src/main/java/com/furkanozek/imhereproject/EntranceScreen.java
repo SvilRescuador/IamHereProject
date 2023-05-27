@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.InputFilter;
+import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -43,6 +46,12 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
         ID = findViewById(R.id.editTextTextPersonName4);
         phoneNumber = findViewById(R.id.editTextTextPersonName6);
 
+
+        ID.setInputType(InputType.TYPE_CLASS_NUMBER);
+        ID.setFilters(new InputFilter[] { new InputFilter.LengthFilter(11) });
+        phoneNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
+        phoneNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(11) });
+
         // Initialize the Spinner
         Spinner spinner = findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
@@ -77,15 +86,23 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
 
     public void signUp (View view) {
 
+
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("Name", name.getText().toString()).apply();
-        editor.putString("Surname", surname.getText().toString()).apply();
-        editor.putString("ID", ID.getText().toString()).apply();
-        editor.putString("PhoneNumber", phoneNumber.getText().toString()).apply();
-        editor.putString("BloodType", bloodType).apply();
-        editor.putBoolean("hasSavedInfo", true).apply();
-        Intent intent = new Intent(EntranceScreen.this, adresGuncelle.class);
-        startActivity(intent);
+        if(phoneNumber.getText().toString().length() != 11){
+            Toast.makeText(getApplicationContext(), "Please enter correct phone number" , Toast.LENGTH_SHORT).show();
+        }else if(ID.getText().toString().length() != 11){
+            Toast.makeText(getApplicationContext(), "Please enter correct ID" , Toast.LENGTH_SHORT).show();
+        }else {
+            editor.putString("Name", name.getText().toString()).apply();
+            editor.putString("Surname", surname.getText().toString()).apply();
+            editor.putString("ID", ID.getText().toString()).apply();
+            editor.putString("PhoneNumber", phoneNumber.getText().toString()).apply();
+            editor.putString("BloodType", bloodType).apply();
+            editor.putBoolean("hasSavedInfo", true).apply();
+            Intent intent = new Intent(EntranceScreen.this, adresGuncelle.class);
+            startActivity(intent);
+            finish();
+        }
 
     }
 }

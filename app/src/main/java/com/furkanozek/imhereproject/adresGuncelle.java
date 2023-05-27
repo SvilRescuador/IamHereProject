@@ -179,6 +179,7 @@ public class adresGuncelle extends AppCompatActivity  {
         editor.putString("BuildingName", editText.getText().toString()).apply();
         Intent intent = new Intent(adresGuncelle.this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void back(View view) {
