@@ -16,6 +16,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 public class EntranceScreen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
@@ -35,6 +42,9 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+       
 
         if (sharedPreferences.getBoolean("hasSavedInfo",false)) {
             Intent intent = new Intent(EntranceScreen.this, MainActivity.class);
@@ -65,6 +75,9 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
 
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
+
+
+
     }
 
     @Override
@@ -105,5 +118,7 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
         }
 
     }
+
+
 }
 
