@@ -44,7 +44,7 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
-       
+
 
         if (sharedPreferences.getBoolean("hasSavedInfo",false)) {
             Intent intent = new Intent(EntranceScreen.this, MainActivity.class);
