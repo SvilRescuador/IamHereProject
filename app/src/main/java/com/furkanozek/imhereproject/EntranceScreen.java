@@ -1,5 +1,7 @@
 package com.furkanozek.imhereproject;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,14 +16,26 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class EntranceScreen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -112,6 +126,48 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
             editor.putString("PhoneNumber", phoneNumber.getText().toString()).apply();
             editor.putString("BloodType", bloodType).apply();
             editor.putBoolean("hasSavedInfo", true).apply();
+
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            Map<String, Object> user = new HashMap<>();
+            user.put("Name", name.getText().toString() + surname.getText().toString());
+            user.put("ID", ID.getText().toString());
+            user.put("PhoneNumber", phoneNumber.getText().toString());
+            user.put("BloodType", bloodType);
+
+
+// Add a new document with a generated ID
+            db.collection("users")
+                    .add(user)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error adding document", e);
+                        }
+                    });
+
+            db.collection("users")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    Log.d(TAG, document.getId() + " => " + document.getData());
+                                }
+                            } else {
+                                Log.w(TAG, "Error getting documents.", task.getException());
+                            }
+                        }
+                    });
+
+
             Intent intent = new Intent(EntranceScreen.this, adresGuncelle.class);
             startActivity(intent);
             finish();
