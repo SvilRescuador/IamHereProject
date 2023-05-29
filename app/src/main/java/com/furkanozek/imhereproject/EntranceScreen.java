@@ -148,45 +148,11 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
 
             for(int k = 0 ; k < validIDs.size() ; k++){
                 if(!ID.getText().toString().equals(validIDs.get(k))){
-                    Toast.makeText(getApplicationContext(),"Please enter a valid ID" , Toast.LENGTH_SHORT).show();
-                }else{
-                    // Add a new document with a generated ID
-                    db.collection("users")
-                            .add(user)
-                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                @Override
-                                public void onSuccess(DocumentReference documentReference) {
-                                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.w(TAG, "Error adding document", e);
-                                }
-                            });
-
-
-
-                    db.collection("users")
-                            .get()
-                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        for (QueryDocumentSnapshot document : task.getResult()) {
-                                            Log.d(TAG, document.getId() + " => " + document.getData());
-                                        }
-                                    } else {
-                                        Log.w(TAG, "Error getting documents.", task.getException());
-                                    }
-                                }
-                            });
-
-
                     Intent intent = new Intent(EntranceScreen.this, MainActivity.class);
                     startActivity(intent);
                     finish();
+                }else if(k == validIDs.size() -1 ){
+                    Toast.makeText(getApplicationContext(),"Please enter a valid ID" , Toast.LENGTH_SHORT).show();
                 }
             }
 
