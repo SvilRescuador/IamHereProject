@@ -137,7 +137,8 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
 
 
             Map<String, Object> user = new HashMap<>();
-            user.put("Name", name.getText().toString() + surname.getText().toString());
+            user.put("Name", name.getText().toString() );
+            user.put("Surname", surname.getText().toString());
             user.put("ID", ID.getText().toString());
             user.put("PhoneNumber", phoneNumber.getText().toString());
             user.put("BloodType", bloodType);
