@@ -25,12 +25,11 @@ import java.util.Map;
 public class Notices {
 
     static FirebaseFirestore db;
-    public static void noticesDatabase(int nCode, String buildingName, String name, String surname, String bloodType, String noticeBy, String phoneNumber){
+    public static void noticesDatabase(int nCode, String buildingName, String nameSurname, String bloodType, String noticeBy, String phoneNumber){
         db = FirebaseFirestore.getInstance();
 
         Map<String, Object> notice = new HashMap<>();
-        notice.put("Name", name);
-        notice.put("Surname", surname);
+        notice.put("Name", nameSurname);
         notice.put("noticeBy", noticeBy);
         notice.put("PhoneNumber", phoneNumber);
         notice.put("BloodType", bloodType);

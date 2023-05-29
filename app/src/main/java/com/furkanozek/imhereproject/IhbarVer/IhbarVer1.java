@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -14,15 +15,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.furkanozek.imhereproject.EntranceScreen;
 import com.furkanozek.imhereproject.MainActivity;
+import com.furkanozek.imhereproject.Notices;
 import com.furkanozek.imhereproject.R;
 
 public class IhbarVer1 extends AppCompatActivity {
 
     private static int neighborhoodCode;
     private static String bloodType;
-    EditText phoneNumber;
-    EditText nameSurname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -181,12 +182,14 @@ public class IhbarVer1 extends AppCompatActivity {
     }
 
     public void makeNotice( View view){
-        /* if(phoneNumber.getText().toString().length() != 11){
-            Toast.makeText(getApplicationContext(), "Please enter correct phone number", Toast.LENGTH_SHORT).show();
-        }else{
-
-        } */
-
-
+        SharedPreferences sharedPreferences = getSharedPreferences(EntranceScreen.MyPREFERENCES, Context.MODE_PRIVATE);
+        EditText buildingName = findViewById(R.id.editTextTextPersonName14);
+        EditText nameSurname = findViewById(R.id.editTextTextPersonName10);
+        EditText phoneNumber = findViewById(R.id.editTextTextPersonName12);
+        Notices.noticesDatabase(neighborhoodCode, buildingName.getText().toString(), nameSurname.getText().toString(), bloodType, sharedPreferences.getString("Name", null) + " " + sharedPreferences.getString("Surname", null), phoneNumber.getText().toString());
+        Toast.makeText(getApplicationContext(), "Notice is created", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(IhbarVer1.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
