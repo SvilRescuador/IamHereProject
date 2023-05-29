@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void helpMe(View view){
 
-
+        Notices.noticesDatabase(sharedPreferences.getInt("nCode", 0), sharedPreferences.getString("BuildingName", null), sharedPreferences.getString("Name", null), sharedPreferences.getString("Surname", null), sharedPreferences.getString("BloodType", null), "themself", sharedPreferences.getString("PhoneNumber", null));
         Toast.makeText(getApplicationContext(), "Notice is created", Toast.LENGTH_SHORT).show();
     }
 
