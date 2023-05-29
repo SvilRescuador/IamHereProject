@@ -1,4 +1,4 @@
-package com.furkanozek.imhereproject.GuncelIhbar;
+package com.furkanozek.imhereproject.IhbarVer;
 
 import androidx.appcompat.app.AppCompatActivity;
 

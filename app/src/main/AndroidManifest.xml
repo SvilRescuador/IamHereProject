@@ -30,13 +30,10 @@
             android:name=".Bilgilerim"
             android:exported="false" />
         <activity
-            android:name=".GuncelIhbar.GuncelIhbar"
+            android:name=".IhbarVer.GuncelIhbar"
             android:exported="false" />
         <activity
             android:name=".IhbarVer.IhbarVer1"
-            android:exported="false" />
-        <activity
-            android:name=".HelpMe.HelpMe1"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

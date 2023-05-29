@@ -7,9 +7,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
-import com.furkanozek.imhereproject.GuncelIhbar.GuncelIhbar;
-import com.furkanozek.imhereproject.HelpMe.HelpMe1;
+import com.furkanozek.imhereproject.IhbarVer.GuncelIhbar;
 import com.furkanozek.imhereproject.IhbarVer.IhbarVer1;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void helpMe(View view){
-        Intent intent = new Intent(MainActivity.this, HelpMe1.class);
-        startActivity(intent);
 
+
+        Toast.makeText(getApplicationContext(), "Notice is created", Toast.LENGTH_SHORT).show();
     }
 
     public void ihbarVer(View view){
