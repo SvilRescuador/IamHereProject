@@ -1,16 +1,35 @@
 package com.furkanozek.imhereproject;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class adresGuncelle extends AppCompatActivity  {
@@ -21,12 +40,21 @@ public class adresGuncelle extends AppCompatActivity  {
     SharedPreferences sharedPreferences;
     private static int neighborhoodCode;
     EditText editText;
+
+    FirebaseFirestore mAuth ;
+    String user1 ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adres_guncelle);
         sharedPreferences = getSharedPreferences(EntranceScreen.MyPREFERENCES, Context.MODE_PRIVATE);
         editText = findViewById(R.id.editTextTextPersonName2);
+
+        if (sharedPreferences.getBoolean("hasSavedInfo",false)) {
+            Intent intent = new Intent(adresGuncelle.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         citySelected = false;
         districtSelected = false;
@@ -174,10 +202,14 @@ public class adresGuncelle extends AppCompatActivity  {
     }
 
     public void save(View view) {
+
+
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(nCode, neighborhoodCode).apply();
         editor.putString("BuildingName", editText.getText().toString()).apply();
-        Intent intent = new Intent(adresGuncelle.this, MainActivity.class);
+
+
+        Intent intent = new Intent(adresGuncelle.this, EntranceScreen.class);
         startActivity(intent);
         finish();
     }

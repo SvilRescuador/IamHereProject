@@ -28,6 +28,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -35,6 +36,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EntranceScreen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -45,7 +47,9 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
     EditText surname;
     EditText ID;
     EditText phoneNumber;
+    String address ;
     SharedPreferences sharedPreferences;
+    FirebaseFirestore db ;
     public static final String MyPREFERENCES = "MyPrefs";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +62,9 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
+        address = newAddress.printAddress(adresGuncelle.getNeighborhoodCode()) + " " + sharedPreferences.getString("BuildingName", null);
 
 
-        if (sharedPreferences.getBoolean("hasSavedInfo",false)) {
-            Intent intent = new Intent(EntranceScreen.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
         name = findViewById(R.id.editTextTextPersonName);
         surname = findViewById(R.id.editTextTextPersonName3);
         ID = findViewById(R.id.editTextTextPersonName4);
@@ -114,6 +114,7 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
     public void signUp (View view) {
 
 
+
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if(phoneNumber.getText().toString().length() != 11){
             Toast.makeText(getApplicationContext(), "Please enter correct phone number" , Toast.LENGTH_SHORT).show();
@@ -127,13 +128,19 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
             editor.putString("BloodType", bloodType).apply();
             editor.putBoolean("hasSavedInfo", true).apply();
 
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            db = FirebaseFirestore.getInstance();
+
 
             Map<String, Object> user = new HashMap<>();
             user.put("Name", name.getText().toString() + surname.getText().toString());
             user.put("ID", ID.getText().toString());
             user.put("PhoneNumber", phoneNumber.getText().toString());
             user.put("BloodType", bloodType);
+            user.put("Address" , address);
+
+
+
+
 
 
 // Add a new document with a generated ID
@@ -152,6 +159,8 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
                         }
                     });
 
+
+
             db.collection("users")
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -168,7 +177,7 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
                     });
 
 
-            Intent intent = new Intent(EntranceScreen.this, adresGuncelle.class);
+            Intent intent = new Intent(EntranceScreen.this, MainActivity.class);
             startActivity(intent);
             finish();
         }
