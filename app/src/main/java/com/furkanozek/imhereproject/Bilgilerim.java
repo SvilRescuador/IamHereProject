@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.furkanozek.imhereproject.IhbarVer.GuncelIhbar;
+
 public class Bilgilerim extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;

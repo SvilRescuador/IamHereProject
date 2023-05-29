@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.furkanozek.imhereproject.Bilgilerim;
 import com.furkanozek.imhereproject.MainActivity;
 import com.furkanozek.imhereproject.R;
 
@@ -163,7 +164,9 @@ public class GuncelIhbar extends AppCompatActivity {
     }
 
     public void searchNotices (View view) {
-
+        Intent intent = new Intent(GuncelIhbar.this, ihbarListesi.class);
+        startActivity(intent);
+        finish();
     }
 
 
@@ -171,5 +174,9 @@ public class GuncelIhbar extends AppCompatActivity {
         Intent intent = new Intent(GuncelIhbar.this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public static int getNeighborhoodCode(){
+        return neighborhoodCode;
     }
 }

@@ -15,18 +15,20 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Notices {
 
-    static FirebaseFirestore db;
+    static FirebaseFirestore db = FirebaseFirestore.getInstance();
     public static void noticesDatabase(int nCode, String buildingName, String nameSurname, String bloodType, String noticeBy, String phoneNumber){
-        db = FirebaseFirestore.getInstance();
+
 
         Map<String, Object> notice = new HashMap<>();
         notice.put("Name", nameSurname);
@@ -52,7 +54,14 @@ public class Notices {
                 });
 
 
-        String b;
+        /*String b;
+
+        */
+
+    }
+
+    public static ArrayList<String> findNotices(int neighborhoodCode){
+        ArrayList<String> notices = new ArrayList<>();
 
         db.collection("notices")
                 .get()
@@ -62,6 +71,13 @@ public class Notices {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
+                                Map<String, Object> data = document.getData();
+
+                                int nCode = (int) data.get("nCode");
+                                if(nCode == neighborhoodCode) {
+                                    String bName = new String((String) data.get("BuildingName"));
+                                    notices.add(bName);
+                                }
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
@@ -69,6 +85,7 @@ public class Notices {
                     }
                 });
 
+        return notices;
     }
 
 }
