@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IhbarVer.GuncelIhbar">
+    tools:context=".GuncelIhbar">
 
     <Spinner
         android:id="@+id/spinner2"
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
         android:backgroundTint="#C61313"
-        android:onClick="searchNotices"
+        android:onClick="search"
         android:text="Search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

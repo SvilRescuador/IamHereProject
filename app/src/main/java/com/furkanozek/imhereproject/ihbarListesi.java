@@ -1,4 +1,4 @@
-package com.furkanozek.imhereproject.IhbarVer;
+package com.furkanozek.imhereproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 

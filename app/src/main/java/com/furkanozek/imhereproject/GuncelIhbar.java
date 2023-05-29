@@ -1,52 +1,27 @@
-package com.furkanozek.imhereproject.IhbarVer;
+package com.furkanozek.imhereproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.InputFilter;
-import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.furkanozek.imhereproject.EntranceScreen;
-import com.furkanozek.imhereproject.MainActivity;
-import com.furkanozek.imhereproject.Notices;
-import com.furkanozek.imhereproject.R;
-
-public class IhbarVer1 extends AppCompatActivity {
+public class GuncelIhbar extends AppCompatActivity {
 
     private static int neighborhoodCode;
-    private static String bloodType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ihbar_ver1);
+        setContentView(R.layout.activity_guncel_ihbar);
 
-        /* phoneNumber.findViewById(R.id.editTextTextPersonName12);
-        nameSurname.findViewById(R.id.editTextTextPersonName10);
+        // Initialize the Spinner
+        Spinner spinner2 = findViewById(R.id.spinner2);
+        Spinner spinner3 = findViewById(R.id.spinner3);
+        Spinner spinner4 = findViewById(R.id.spinner5);
 
-
-        phoneNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
-        phoneNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(11) }); */
-
-
-        neighborhoodCode = 0;
-
-        Spinner spinner = findViewById(R.id.spinner);
-        Spinner spinner2 = findViewById(R.id.spinner6);
-        Spinner spinner3 = findViewById(R.id.spinner5);
-        Spinner spinner4 = findViewById(R.id.spinner7);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.spinner_items, android.R.layout.simple_spinner_item);
-        ArrayAdapter<CharSequence> adapter0 = ArrayAdapter.createFromResource(this,
-                R.array.spinner_items1, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
                 R.array.spinner_itemsAnkara, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
@@ -61,8 +36,6 @@ public class IhbarVer1 extends AppCompatActivity {
                 R.array.spinner_items3ilceler, android.R.layout.simple_spinner_item);
         class cityListener implements AdapterView.OnItemSelectedListener {
 
-
-
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
@@ -72,11 +45,11 @@ public class IhbarVer1 extends AppCompatActivity {
                 }
                 else if(selectedItem.equals("Manisa")) {
                     spinner3.setAdapter(adapter2);
-                    neighborhoodCode = 10;
+                    neighborhoodCode = 11;
                 }
                 else if(selectedItem.equals("Tokat")) {
                     spinner3.setAdapter(adapter3);
-                    neighborhoodCode = 10;
+                    neighborhoodCode = 12;
                 }
             }
 
@@ -126,12 +99,12 @@ public class IhbarVer1 extends AppCompatActivity {
                     neighborhoodCode += 1;
                 }
 
-                else if(selectedItem.equals("15 Temmuz Mahallesi") || selectedItem.equals("Hürriyet Mahallesi") || selectedItem.equals("Milliyet Mahallesi")) {
+                else if(selectedItem.equals("Kazım Karabekir Mahallesi") || selectedItem.equals("Hürriyet Mahallesi") || selectedItem.equals("Milliyet Mahallesi")) {
 
                     neighborhoodCode = neighborhoodCode * 100;
                     neighborhoodCode += 2;
                 }
-                else if(selectedItem.equals("Ulu Cami Mahallesi") || selectedItem.equals("Yıldırım Mahallesi") || selectedItem.equals("Fevzi Çakmak Mahallesi")) {
+                else if(selectedItem.equals("Ulucami Mahallesi") || selectedItem.equals("Yıldırım Mahallesi") || selectedItem.equals("Fevzi Çakmak Mahallesi")) {
 
                     neighborhoodCode = neighborhoodCode * 100;
                     neighborhoodCode += 3;
@@ -143,53 +116,63 @@ public class IhbarVer1 extends AppCompatActivity {
 
             }
         }
-        // Initialize the Spinner
 
-       class bloodTypeListener implements AdapterView.OnItemSelectedListener {
-           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               // Get the selected item's text
-               String selectedItem = parent.getItemAtPosition(position).toString();
 
-               // Do something with the selected item
-               if(!selectedItem.equals("Blood Type")){
-                   bloodType = selectedItem;
-               }
-
-           }
-
-           @Override
-           public void onNothingSelected(AdapterView<?> parent) {
-               // Do nothing
-           }
-       }
-
-        spinner.setAdapter(adapter);
-        spinner2.setAdapter(adapter0);
-        bloodTypeListener bloodTypeListener = new bloodTypeListener();
-        spinner.setOnItemSelectedListener(bloodTypeListener);
         cityListener cityListener = new cityListener();
         spinner2.setOnItemSelectedListener(cityListener);
         districtListener districtListener = new districtListener();
         spinner3.setOnItemSelectedListener(districtListener);
         neigborhoodListener neigborhoodListener = new neigborhoodListener();
         spinner4.setOnItemSelectedListener(neigborhoodListener);
+
+
+
+
+
+
+        // Specify the layout to use when the list of choices appears
+        adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+
+
+
+        // Apply the adapter to the spinner
+
+
+        // Specify the layout to use when the list of choices appears
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+
+
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.spinner_items1, android.R.layout.simple_spinner_item);
+
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        spinner2.setAdapter(adapter);
+
     }
+
+    public void search (View view) {
+        Intent intent = new Intent(GuncelIhbar.this, ihbarListesi.class);
+        startActivity(intent);
+        finish();
+    }
+
 
     public void back ( View view){
-        Intent intent = new Intent(IhbarVer1.this, MainActivity.class);
+        Intent intent = new Intent(GuncelIhbar.this, MainActivity.class);
         startActivity(intent);
         finish();
     }
 
-    public void makeNotice( View view){
-        SharedPreferences sharedPreferences = getSharedPreferences(EntranceScreen.MyPREFERENCES, Context.MODE_PRIVATE);
-        EditText buildingName = findViewById(R.id.editTextTextPersonName14);
-        EditText nameSurname = findViewById(R.id.editTextTextPersonName10);
-        EditText phoneNumber = findViewById(R.id.editTextTextPersonName12);
-        Notices.noticesDatabase(neighborhoodCode, buildingName.getText().toString(), nameSurname.getText().toString(), bloodType, sharedPreferences.getString("Name", null) + " " + sharedPreferences.getString("Surname", null), phoneNumber.getText().toString());
-        Toast.makeText(getApplicationContext(), "Notice is created", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(IhbarVer1.this, MainActivity.class);
-        startActivity(intent);
-        finish();
+    public static int getNeighborhoodCode(){
+        return neighborhoodCode;
     }
 }

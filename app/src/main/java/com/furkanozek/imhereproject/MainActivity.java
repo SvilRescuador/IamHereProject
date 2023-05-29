@@ -9,9 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.furkanozek.imhereproject.IhbarVer.GuncelIhbar;
-import com.furkanozek.imhereproject.IhbarVer.IhbarVer1;
-
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;

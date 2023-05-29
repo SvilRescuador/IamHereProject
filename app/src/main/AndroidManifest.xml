@@ -12,7 +12,7 @@
         android:theme="@style/Theme.ImHereProject"
         tools:targetApi="31">
         <activity
-            android:name=".IhbarListesi"
+            android:name=".ihbarListesi"
             android:exported="false" />
         <activity
             android:name=".yeniAdresGuncelle"
@@ -33,10 +33,10 @@
             android:name=".Bilgilerim"
             android:exported="false" />
         <activity
-            android:name=".IhbarVer.GuncelIhbar"
+            android:name=".GuncelIhbar"
             android:exported="false" />
         <activity
-            android:name=".IhbarVer.IhbarVer1"
+            android:name=".IhbarVer1"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
