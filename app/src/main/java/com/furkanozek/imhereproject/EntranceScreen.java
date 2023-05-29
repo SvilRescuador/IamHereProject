@@ -35,6 +35,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,10 +51,14 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
     String address ;
     SharedPreferences sharedPreferences;
     FirebaseFirestore db ;
+    ArrayList<String> validIDs = new ArrayList<>();
     public static final String MyPREFERENCES = "MyPrefs";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        validIDs.add("45766659840");
+        validIDs.add("11378536788");
+        validIDs.add("52145668850");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrance_screen);
@@ -140,46 +145,52 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
 
 
 
-
-
-
-// Add a new document with a generated ID
-            db.collection("users")
-                    .add(user)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Error adding document", e);
-                        }
-                    });
-
-
-
-            db.collection("users")
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    Log.d(TAG, document.getId() + " => " + document.getData());
+            for(int k = 0 ; k < validIDs.size() ; k++){
+                if(!ID.getText().toString().equals(validIDs.get(k))){
+                    Toast.makeText(getApplicationContext(),"Please enter a valid ID" , Toast.LENGTH_SHORT).show();
+                }else{
+                    // Add a new document with a generated ID
+                    db.collection("users")
+                            .add(user)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
                                 }
-                            } else {
-                                Log.w(TAG, "Error getting documents.", task.getException());
-                            }
-                        }
-                    });
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Error adding document", e);
+                                }
+                            });
 
 
-            Intent intent = new Intent(EntranceScreen.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+
+                    db.collection("users")
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                            Log.d(TAG, document.getId() + " => " + document.getData());
+                                        }
+                                    } else {
+                                        Log.w(TAG, "Error getting documents.", task.getException());
+                                    }
+                                }
+                            });
+
+
+                    Intent intent = new Intent(EntranceScreen.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+
+
+
         }
 
     }

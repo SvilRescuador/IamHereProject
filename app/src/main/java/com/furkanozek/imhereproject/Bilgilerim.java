@@ -63,7 +63,7 @@ public class Bilgilerim extends AppCompatActivity {
     }
 
     public void changeAddress(View view) {
-        Intent intent = new Intent(Bilgilerim.this, adresGuncelle.class);
+        Intent intent = new Intent(Bilgilerim.this, yeniAdresGuncelle.class);
         startActivity(intent);
     }
 
