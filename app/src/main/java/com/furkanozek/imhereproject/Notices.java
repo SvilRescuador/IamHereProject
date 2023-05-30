@@ -63,7 +63,7 @@ public class Notices {
     public static void findNotices(int neighborhoodCode, FirestoreCallback callback) {
         List<String> order = Arrays.asList("Name",  "BuildingName", "PhoneNumber", "BloodType", "noticeBy");
         List<String> dataList = new ArrayList<>();
-        db.collection("notices")
+        db.collection("notices").orderBy("Name")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
