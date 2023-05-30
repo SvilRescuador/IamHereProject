@@ -92,16 +92,16 @@ public class GuncelIhbar extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
-                if(selectedItem.equals("Atatürk Mahallesi") || selectedItem.equals("Cumhuriyet Mahallesi") || selectedItem.equals("Karşıyaka Mahallesi")) {
+                if(selectedItem.equals("Atatürk Mahallesi") || selectedItem.equals("Kazım Karabekir Mahallesi") || selectedItem.equals("Ulucami Mahallesi")) {
 
                     neighborhoodCode = cityCode * 10000 + districtCode * 100 + 1;
                 }
 
-                else if(selectedItem.equals("Kazım Karabekir Mahallesi") || selectedItem.equals("Hürriyet Mahallesi") || selectedItem.equals("Milliyet Mahallesi")) {
+                else if(selectedItem.equals("Hürriyet Mahallesi") || selectedItem.equals("Cumhuriyet Mahallesi") || selectedItem.equals("Yıldırım Mahallesi")) {
 
                     neighborhoodCode = cityCode * 10000 + districtCode * 100 + 2;
                 }
-                else if(selectedItem.equals("Ulucami Mahallesi") || selectedItem.equals("Yıldırım Mahallesi") || selectedItem.equals("Fevzi Çakmak Mahallesi")) {
+                else if(selectedItem.equals("Karşıyaka Mahallesi") || selectedItem.equals("Milliyet Mahallesi") || selectedItem.equals("Fevzi Çakmak Mahallesi")) {
 
                     neighborhoodCode = cityCode * 10000 + districtCode * 100 + 3;
                 }

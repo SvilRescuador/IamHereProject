@@ -75,7 +75,10 @@ public class Notices {
                                 for (Object value : data.values()) {
                                     dataBuilder.append(value.toString()).append("\n");
                                 }
-                                dataList.add(dataBuilder.toString()); // This will be the text displayed for each item in the list
+                                if((long) document.getData().get("nCode") == neighborhoodCode){
+                                    dataList.add(dataBuilder.toString()); // This will be the text displayed for each item in the list
+                                }
+
                             }
                             callback.onDataLoaded(dataList);
                         } else {
