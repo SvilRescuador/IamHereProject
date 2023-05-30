@@ -48,6 +48,7 @@ public class Bilgilerim extends AppCompatActivity {
     public void changeAddress(View view) {
         Intent intent = new Intent(Bilgilerim.this, yeniAdresGuncelle.class);
         startActivity(intent);
+        MainActivity.isNoticed = false ;
     }
 
     public void updateCred(View view) {

@@ -12,6 +12,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
+    static Boolean isNoticed = false ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +22,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
     }
 
     public void helpMe(View view){
-        Notices.noticesDatabase(sharedPreferences.getInt("nCode", 0), sharedPreferences.getString("BuildingName", null), sharedPreferences.getString("Name", null) + " " + sharedPreferences.getString("Surname", null), sharedPreferences.getString("BloodType", null), "him/herself", sharedPreferences.getString("PhoneNumber", null));
-        Toast.makeText(getApplicationContext(), "Notice is created", Toast.LENGTH_SHORT).show();
+
+
+        if(isNoticed != true){
+            Notices.noticesDatabase(sharedPreferences.getInt("nCode", 0), sharedPreferences.getString("BuildingName", null), sharedPreferences.getString("Name", null) + " " + sharedPreferences.getString("Surname", null), sharedPreferences.getString("BloodType", null), "him/herself", sharedPreferences.getString("PhoneNumber", null));
+            Toast.makeText(getApplicationContext(), "Notice is created", Toast.LENGTH_SHORT).show();
+        }
+        isNoticed = true ;
     }
 
     public void ihbarVer(View view){

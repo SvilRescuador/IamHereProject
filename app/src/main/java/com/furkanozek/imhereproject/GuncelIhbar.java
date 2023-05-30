@@ -147,7 +147,7 @@ public class GuncelIhbar extends AppCompatActivity {
     }
 
     public void search (View view) {
-        if(neighborhoodCode <= 99999 || neighborhoodCode >= 111111){
+        if(neighborhoodCode <= 99999 || neighborhoodCode >= 133333){
             Toast.makeText(getApplicationContext(), "Please select address", Toast.LENGTH_SHORT).show();
         }else{
             Intent intent = new Intent(GuncelIhbar.this, ihbarListesi.class);

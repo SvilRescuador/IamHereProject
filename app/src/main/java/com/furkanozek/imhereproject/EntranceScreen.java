@@ -125,8 +125,8 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
 
     public void signUp (View view) {
 
-        String enteredID = ID.getText().toString();
-        String enteredName = name.getText().toString() + " " + surname.getText().toString();
+        String enteredID = ID.getText().toString().trim();
+        String enteredName = name.getText().toString().trim() + " " + surname.getText().toString().trim();
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if(phoneNumber.getText().toString().length() != 11){

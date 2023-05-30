@@ -176,7 +176,7 @@ public class IhbarVer1 extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please enter name and surname", Toast.LENGTH_SHORT).show();
         }else if(phoneNumber.getText().toString().isEmpty() || phoneNumber.getText().toString().length() != 11){
             Toast.makeText(getApplicationContext(), "Please enter valid phone number", Toast.LENGTH_SHORT).show();
-        }else if((neighborhoodCode <= 99999 || neighborhoodCode >= 111111)){
+        }else if((neighborhoodCode <= 99999 || neighborhoodCode >= 133333)){
             Toast.makeText(getApplicationContext(), "Please enter address", Toast.LENGTH_SHORT).show();
         }else{
             Notices.noticesDatabase(neighborhoodCode, buildingName.getText().toString(), nameSurname.getText().toString(), bloodType, sharedPreferences.getString("Name", null) + " " + sharedPreferences.getString("Surname", null), phoneNumber.getText().toString());
