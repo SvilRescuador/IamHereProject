@@ -2,33 +2,41 @@ package com.furkanozek.imhereproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class GuncelIhbar extends AppCompatActivity {
+public class Bulunanlar extends AppCompatActivity {
 
     private static int neighborhoodCode;
     private static int cityCode;
     private static int districtCode;
-    Spinner spinner2 ;
-    Spinner spinner3 ;
-    Spinner spinner4 ;
+    private static String bloodType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_guncel_ihbar);
+        setContentView(R.layout.activity_ihbar_ver1);
 
-        neighborhoodCode = 0 ;
-        // Initialize the Spinner
-         spinner2 = findViewById(R.id.spinner2);
-         spinner3 = findViewById(R.id.spinner3);
-         spinner4 = findViewById(R.id.spinner5);
 
+
+        neighborhoodCode = 0;
+
+        Spinner spinner = findViewById(R.id.spinner);
+        Spinner spinner2 = findViewById(R.id.spinner6);
+        Spinner spinner3 = findViewById(R.id.spinner5);
+        Spinner spinner4 = findViewById(R.id.spinner7);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.spinner_items, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter0 = ArrayAdapter.createFromResource(this,
+                R.array.spinner_items1, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
                 R.array.spinner_itemsAnkara, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
@@ -42,6 +50,8 @@ public class GuncelIhbar extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter6 = ArrayAdapter.createFromResource(this,
                 R.array.spinner_items3ilceler, android.R.layout.simple_spinner_item);
         class cityListener implements AdapterView.OnItemSelectedListener {
+
+
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -117,60 +127,64 @@ public class GuncelIhbar extends AppCompatActivity {
 
             }
         }
+        // Initialize the Spinner
 
+        class bloodTypeListener implements AdapterView.OnItemSelectedListener {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // Get the selected item's text
+                String selectedItem = parent.getItemAtPosition(position).toString();
 
+                // Do something with the selected item
+                if(!selectedItem.equals("Blood Type")){
+                    bloodType = selectedItem;
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        }
+
+        spinner.setAdapter(adapter);
+        spinner2.setAdapter(adapter0);
+        bloodTypeListener bloodTypeListener = new bloodTypeListener();
+        spinner.setOnItemSelectedListener(bloodTypeListener);
         cityListener cityListener = new cityListener();
         spinner2.setOnItemSelectedListener(cityListener);
         districtListener districtListener = new districtListener();
         spinner3.setOnItemSelectedListener(districtListener);
         neigborhoodListener neigborhoodListener = new neigborhoodListener();
         spinner4.setOnItemSelectedListener(neigborhoodListener);
-
-        // Specify the layout to use when the list of choices appears
-        adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-                // Specify the layout to use when the list of choices appears
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.spinner_items1, android.R.layout.simple_spinner_item);
-
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Apply the adapter to the spinner
-        spinner2.setAdapter(adapter);
-
-
-
     }
 
-    public void search (View view) {
-        if(neighborhoodCode <= 99999 || neighborhoodCode >= 133333){
-            Toast.makeText(getApplicationContext(), "Please select address", Toast.LENGTH_SHORT).show();
+    public void back ( View view){
+        Intent intent = new Intent(Bulunanlar.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void makeNotice( View view){
+        SharedPreferences sharedPreferences = getSharedPreferences(EntranceScreen.MyPREFERENCES, Context.MODE_PRIVATE);
+        EditText buildingName = findViewById(R.id.editTextTextPersonName14);
+        EditText nameSurname = findViewById(R.id.editTextTextPersonName10);
+        EditText phoneNumber = findViewById(R.id.editTextTextPersonName12);
+
+        if(nameSurname.getText().toString().isEmpty()){
+            Toast.makeText(getApplicationContext(), "Please enter name and surname", Toast.LENGTH_SHORT).show();
+        }else if(phoneNumber.getText().toString().isEmpty() || phoneNumber.getText().toString().length() != 11){
+            Toast.makeText(getApplicationContext(), "Please enter valid phone number", Toast.LENGTH_SHORT).show();
+        }else if((neighborhoodCode <= 99999 || neighborhoodCode >= 133333)){
+            Toast.makeText(getApplicationContext(), "Please enter address", Toast.LENGTH_SHORT).show();
         }else{
-            Intent intent = new Intent(GuncelIhbar.this, ihbarListesi.class);
+            Notices.informFoundPeople(neighborhoodCode, buildingName.getText().toString(), nameSurname.getText().toString(), bloodType, sharedPreferences.getString("Name", null) + " " + sharedPreferences.getString("Surname", null), phoneNumber.getText().toString());
+            Toast.makeText(getApplicationContext(), "Notice is created", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Bulunanlar.this, MainActivity.class);
             startActivity(intent);
             finish();
         }
-
-    }
-
-
-    public void back ( View view){
-        Intent intent = new Intent(GuncelIhbar.this, MainActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    public void searchFounds(View view) {
-        Intent intent = new Intent(GuncelIhbar.this, FoundList.class);
-        startActivity(intent);
-        finish();
-    }
-
-    public static int getNeighborhoodCode(){
-        return neighborhoodCode;
     }
 }
+
+

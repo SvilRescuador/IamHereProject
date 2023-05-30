@@ -2,20 +2,18 @@ package com.furkanozek.imhereproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.furkanozek.imhereproject.R;
 
 import java.util.List;
 
-
-public class ihbarListesi extends AppCompatActivity {
+public class FoundList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +22,9 @@ public class ihbarListesi extends AppCompatActivity {
 
         ListView listView = findViewById(R.id.list_view);  // assuming this is the id of your ListView
 
-        Notices.findNotices(GuncelIhbar.getNeighborhoodCode(), new FirestoreCallback() {
+        Notices.findFounds(GuncelIhbar.getNeighborhoodCode(), new FirestoreCallback() {
             public void onDataLoaded(List<String> data) {
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(ihbarListesi.this, android.R.layout.simple_list_item_1, data);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(FoundList.this, android.R.layout.simple_list_item_1, data);
                 listView.setAdapter(adapter);
             }
         });
@@ -34,14 +32,9 @@ public class ihbarListesi extends AppCompatActivity {
     }
 
     public void back(View view) {
-        Intent intent = new Intent(ihbarListesi.this, GuncelIhbar.class);
+        Intent intent = new Intent(FoundList.this, GuncelIhbar.class);
         startActivity(intent);
         finish();
     }
 
-    public void inform(View view) {
-        Intent intent = new Intent(ihbarListesi.this, Bulunanlar.class);
-        startActivity(intent);
-        finish();
-    }
 }
