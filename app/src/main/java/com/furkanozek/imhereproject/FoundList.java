@@ -18,7 +18,7 @@ public class FoundList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ihbar_listesi);
+        setContentView(R.layout.activity_found_list);
 
         ListView listView = findViewById(R.id.list_view);  // assuming this is the id of your ListView
 

@@ -164,10 +164,14 @@ public class GuncelIhbar extends AppCompatActivity {
         finish();
     }
 
-    public void searchFounds(View view) {
-        Intent intent = new Intent(GuncelIhbar.this, FoundList.class);
-        startActivity(intent);
-        finish();
+    public void searchFound(View view) {
+        if(neighborhoodCode <= 99999 || neighborhoodCode >= 133333){
+            Toast.makeText(getApplicationContext(), "Please select address", Toast.LENGTH_SHORT).show();
+        }else{
+            Intent intent = new Intent(GuncelIhbar.this, FoundList.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     public static int getNeighborhoodCode(){
