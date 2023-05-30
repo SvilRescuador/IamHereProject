@@ -75,18 +75,6 @@ public class Notices {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> data = document.getData();
                                 StringBuilder dataBuilder = new StringBuilder();
-<<<<<<< Updated upstream
-                                int i = 0;
-                                String[] names = {"Noticed By: ", "Street and Building: ", "Phone Number:", "Blood Type:", "Name:"};
-                                for (Map.Entry<String, Object> entry : data.entrySet()) {
-                                    if(!entry.getKey().equals("nCode")){
-                                        dataBuilder.append(names[i]).append(" = ").append(entry.getValue().toString()).append("\n");
-                                        i++;
-                                    }
-
-                                }
-                                if ((long) document.getData().get("nCode") == neighborhoodCode) {
-=======
                                 Map<Integer, String> orderedData = new HashMap<>();
                                 int i = 0 ;
                                 String[] names = {"Noticed by: " , "Address: " + newAddress.printAddress(neighborhoodCode)  + "" , "Phone Number: ", "Blood Type: " , "Name: " };
@@ -104,7 +92,6 @@ public class Notices {
                                     for (int key : sortedKeys) {
                                         dataBuilder.append(orderedData.get(key)).append("\n");
                                     }
->>>>>>> Stashed changes
                                     dataList.add(dataBuilder.toString()); // This will be the text displayed for each item in the list
                                 }
                             }
@@ -115,7 +102,6 @@ public class Notices {
                     }
                 });
     }
-
 
 }
 
