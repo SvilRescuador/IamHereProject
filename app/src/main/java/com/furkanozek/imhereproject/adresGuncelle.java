@@ -39,6 +39,8 @@ public class adresGuncelle extends AppCompatActivity  {
     static boolean districtSelected;
     SharedPreferences sharedPreferences;
     private static int neighborhoodCode;
+    private static int cityCode;
+    private static int districtCode;
     EditText editText;
 
     FirebaseFirestore mAuth ;
@@ -82,15 +84,15 @@ public class adresGuncelle extends AppCompatActivity  {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 if(selectedItem.equals("Ankara")) {
                     spinner3.setAdapter(adapter1);
-                    neighborhoodCode = 10;
+                    cityCode = 10;
                 }
                 else if(selectedItem.equals("Manisa")) {
                     spinner3.setAdapter(adapter2);
-                    neighborhoodCode = 11;
+                    cityCode = 11;
                 }
                 else if(selectedItem.equals("Tokat")) {
                     spinner3.setAdapter(adapter3);
-                    neighborhoodCode = 12;
+                    cityCode = 12;
                 }
             }
 
@@ -107,19 +109,16 @@ public class adresGuncelle extends AppCompatActivity  {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 if(selectedItem.equals("Çankaya") || selectedItem.equals("Akhisar") || selectedItem.equals("Niksar")) {
                     spinner4.setAdapter(adapter4);
-                    neighborhoodCode = neighborhoodCode * 100;
-                    neighborhoodCode += 1;
+                    districtCode = 1;
                 }
 
                 else if(selectedItem.equals("Gölbaşı") || selectedItem.equals("Saruhanlı") || selectedItem.equals("Turhal")) {
                     spinner4.setAdapter(adapter5);
-                    neighborhoodCode = neighborhoodCode * 100;
-                    neighborhoodCode += 2;
+                    districtCode = 2;
                 }
                 else if(selectedItem.equals("Beypazarı") || selectedItem.equals("Şehzadeler") || selectedItem.equals("Erbaa")) {
                     spinner4.setAdapter(adapter6);
-                    neighborhoodCode = neighborhoodCode * 100;
-                    neighborhoodCode += 3;
+                    districtCode = 3;
                 }
             }
 
@@ -136,19 +135,15 @@ public class adresGuncelle extends AppCompatActivity  {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 if(selectedItem.equals("Atatürk Mahallesi") || selectedItem.equals("Cumhuriyet Mahallesi") || selectedItem.equals("Karşıyaka Mahallesi")) {
 
-                    neighborhoodCode = neighborhoodCode * 100;
-                    neighborhoodCode += 1;
+                    neighborhoodCode = cityCode * 10000 + districtCode * 100 + 1;
                 }
 
                 else if(selectedItem.equals("Kazım Karabekir Mahallesi") || selectedItem.equals("Hürriyet Mahallesi") || selectedItem.equals("Milliyet Mahallesi")) {
 
-                    neighborhoodCode = neighborhoodCode * 100;
-                    neighborhoodCode += 2;
+                    neighborhoodCode = cityCode * 10000 + districtCode * 100 + 2;
                 }
                 else if(selectedItem.equals("Ulucami Mahallesi") || selectedItem.equals("Yıldırım Mahallesi") || selectedItem.equals("Fevzi Çakmak Mahallesi")) {
-
-                    neighborhoodCode = neighborhoodCode * 100;
-                    neighborhoodCode += 3;
+                    neighborhoodCode = cityCode * 10000 + districtCode * 100 + 3;
                 }
             }
 
