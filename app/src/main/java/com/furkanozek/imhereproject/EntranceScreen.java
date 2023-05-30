@@ -33,8 +33,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,14 +55,11 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
     String address ;
     SharedPreferences sharedPreferences;
     FirebaseFirestore db ;
-    ArrayList<String> validIDs = new ArrayList<>();
+    private Map<String, String> validIDNamePairs = new HashMap<>();
+
     public static final String MyPREFERENCES = "MyPrefs";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        validIDs.add("45766659840");
-        validIDs.add("11378536788");
-        validIDs.add("52145668850");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrance_screen);
@@ -66,6 +67,12 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
+        try {
+            loadValidIDNamePairs();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
 
         address = newAddress.printAddress(adresGuncelle.getNeighborhoodCode()) + " " + sharedPreferences.getString("BuildingName", null);
 
@@ -118,7 +125,8 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
 
     public void signUp (View view) {
 
-
+        String enteredID = ID.getText().toString();
+        String enteredName = name.getText().toString() + " " + surname.getText().toString();
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if(phoneNumber.getText().toString().length() != 11){
@@ -126,40 +134,56 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
         }else if(ID.getText().toString().length() != 11){
             Toast.makeText(getApplicationContext(), "Please enter correct ID" , Toast.LENGTH_SHORT).show();
         }else {
-            editor.putString("Name", name.getText().toString()).apply();
-            editor.putString("Surname", surname.getText().toString()).apply();
-            editor.putString("ID", ID.getText().toString()).apply();
-            editor.putString("PhoneNumber", phoneNumber.getText().toString()).apply();
-            editor.putString("BloodType", bloodType).apply();
-            editor.putBoolean("hasSavedInfo", true).apply();
+            if (validIDNamePairs.containsKey(enteredID)) {
+                String validName = validIDNamePairs.get(enteredID);
+                if (enteredName.equals(validName)) {
 
-            db = FirebaseFirestore.getInstance();
+                    editor.putString("Name", name.getText().toString()).apply();
+                    editor.putString("Surname", surname.getText().toString()).apply();
+                    editor.putString("ID", ID.getText().toString()).apply();
+                    editor.putString("PhoneNumber", phoneNumber.getText().toString()).apply();
+                    editor.putString("BloodType", bloodType).apply();
+                    editor.putBoolean("hasSavedInfo", true).apply();
 
-
-            Map<String, Object> user = new HashMap<>();
-            user.put("Name", name.getText().toString() );
-            user.put("Surname", surname.getText().toString());
-            user.put("ID", ID.getText().toString());
-            user.put("PhoneNumber", phoneNumber.getText().toString());
-            user.put("BloodType", bloodType);
-            user.put("Address" , address);
+                    db = FirebaseFirestore.getInstance();
 
 
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("Name", name.getText().toString() );
+                    user.put("Surname", surname.getText().toString());
+                    user.put("ID", ID.getText().toString());
+                    user.put("PhoneNumber", phoneNumber.getText().toString());
+                    user.put("BloodType", bloodType);
+                    user.put("Address" , address);
 
-            for(int k = 0 ; k < validIDs.size() ; k++){
-                if(!ID.getText().toString().equals(validIDs.get(k))){
                     Intent intent = new Intent(EntranceScreen.this, MainActivity.class);
                     startActivity(intent);
                     finish();
-                }else if(k == validIDs.size() -1 ){
-                    Toast.makeText(getApplicationContext(),"Please enter a valid ID" , Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getApplicationContext(), "Please enter a valid ID and name", Toast.LENGTH_SHORT).show();
                 }
+
+                }else {
+                Toast.makeText(getApplicationContext(),"Please enter a valid ID and name" , Toast.LENGTH_SHORT).show();
             }
-
-
 
         }
 
+    }
+
+    private void loadValidIDNamePairs() throws IOException {
+
+        InputStream inputStream = getAssets().open("IDs.txt");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split(",");
+            if (parts.length == 2) {
+                validIDNamePairs.put(parts[0].trim(), parts[1].trim());
+                
+            }
+        }
+        reader.close();
     }
 
 
