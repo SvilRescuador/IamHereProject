@@ -26,19 +26,11 @@ public class ihbarListesi extends AppCompatActivity {
 
         Notices.findNotices(GuncelIhbar.getNeighborhoodCode(), new FirestoreCallback() {
             public void onDataLoaded(List<String> data) {
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                        ihbarListesi.this,
-                        android.R.layout.simple_list_item_1,  // This is a built-in layout for list items
-                        data
-                );
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(ihbarListesi.this, android.R.layout.simple_list_item_1, data);
                 listView.setAdapter(adapter);
             }
         });
-        /*for(int a = 0; a < Notices.findNotices(GuncelIhbar.getNeighborhoodCode()).size(); a++) {
-            String newElement = new String(Notices.findNotices(GuncelIhbar.getNeighborhoodCode()).get(a));
-            text += "\n" + newElement;
-            list.setText(text);
-        }*/
+
     }
 
     public void back(View view) {

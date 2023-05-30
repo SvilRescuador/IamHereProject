@@ -72,13 +72,10 @@ public class Notices {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> data = document.getData();
                                 StringBuilder dataBuilder = new StringBuilder();
-                                for (Object value : data.values()) {
-                                    dataBuilder.append(value.toString()).append("\n");
+                                for (Map.Entry<String, Object> entry : data.entrySet()) {
+                                    dataBuilder.append(entry.getKey()).append(" = ").append(entry.getValue().toString()).append("\n");
                                 }
-                                if((long) document.getData().get("nCode") == neighborhoodCode){
-                                    dataList.add(dataBuilder.toString()); // This will be the text displayed for each item in the list
-                                }
-
+                                dataList.add(dataBuilder.toString()); // This will be the text displayed for each item in the list
                             }
                             callback.onDataLoaded(dataList);
                         } else {
@@ -87,6 +84,7 @@ public class Notices {
                     }
                 });
     }
+
 
 }
 
