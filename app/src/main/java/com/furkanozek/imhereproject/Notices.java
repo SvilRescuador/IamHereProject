@@ -60,9 +60,8 @@ public class Notices {
 
     }
 
-    public static String findNotices(int neighborhoodCode){
-        //ArrayList<String> notices = new ArrayList<>();
-        final String[] answer = {""};
+    public static void findNotices(int neighborhoodCode, FirestoreCallback callback) {
+        StringBuilder dataBuilder = new StringBuilder();
         db.collection("notices")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -70,22 +69,16 @@ public class Notices {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
                                 Map<String, Object> data = document.getData();
-                                answer[0] = (String) data.get("BuildingName") ;
-                                /*int nCode = (int) data.get("nCode");
-                                if(nCode == neighborhoodCode) {
-                                    String bName = new String((String) data.get("BuildingName"));
-                                    notices.add(bName);
-                                }*/
+                                dataBuilder.append(data.toString()).append("\n");
                             }
+                            callback.onDataLoaded(dataBuilder.toString());
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
-        String ans = new String(answer[0]);
-        return "ans";
     }
+
 
 }
