@@ -21,6 +21,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +64,7 @@ public class Notices {
     }
 
     public static void findNotices(int neighborhoodCode, FirestoreCallback callback) {
+        List<String> order = Arrays.asList("Name",  "BuildingName", "PhoneNumber", "BloodType", "noticeBy");
         List<String> dataList = new ArrayList<>();
         db.collection("notices")
                 .get()
@@ -72,6 +75,7 @@ public class Notices {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> data = document.getData();
                                 StringBuilder dataBuilder = new StringBuilder();
+<<<<<<< Updated upstream
                                 int i = 0;
                                 String[] names = {"Noticed By: ", "Street and Building: ", "Phone Number:", "Blood Type:", "Name:"};
                                 for (Map.Entry<String, Object> entry : data.entrySet()) {
@@ -82,6 +86,25 @@ public class Notices {
 
                                 }
                                 if ((long) document.getData().get("nCode") == neighborhoodCode) {
+=======
+                                Map<Integer, String> orderedData = new HashMap<>();
+                                int i = 0 ;
+                                String[] names = {"Noticed by: " , "Address: " + newAddress.printAddress(neighborhoodCode)  + "" , "Phone Number: ", "Blood Type: " , "Name: " };
+                                for (Map.Entry<String, Object> entry : data.entrySet()) {
+                                    String key = entry.getKey();
+                                    if (!key.equals("nCode") && order.contains(key)) {
+                                        int index = order.indexOf(key);
+                                        orderedData.put(index, names[i]  + entry.getValue().toString());
+                                        i++;
+                                    }
+                                }
+                                if((long) document.getData().get("nCode") == neighborhoodCode) {
+                                    List<Integer> sortedKeys = new ArrayList<>(orderedData.keySet());
+                                    Collections.sort(sortedKeys);
+                                    for (int key : sortedKeys) {
+                                        dataBuilder.append(orderedData.get(key)).append("\n");
+                                    }
+>>>>>>> Stashed changes
                                     dataList.add(dataBuilder.toString()); // This will be the text displayed for each item in the list
                                 }
                             }
