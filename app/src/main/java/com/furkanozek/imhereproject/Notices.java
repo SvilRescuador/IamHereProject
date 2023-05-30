@@ -60,9 +60,9 @@ public class Notices {
 
     }
 
-    public static ArrayList<String> findNotices(int neighborhoodCode){
-        ArrayList<String> notices = new ArrayList<>();
-
+    public static String findNotices(int neighborhoodCode){
+        //ArrayList<String> notices = new ArrayList<>();
+        final String[] answer = {""};
         db.collection("notices")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -72,20 +72,20 @@ public class Notices {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 Map<String, Object> data = document.getData();
-
-                                int nCode = (int) data.get("nCode");
+                                answer[0] = (String) data.get("BuildingName") ;
+                                /*int nCode = (int) data.get("nCode");
                                 if(nCode == neighborhoodCode) {
                                     String bName = new String((String) data.get("BuildingName"));
                                     notices.add(bName);
-                                }
+                                }*/
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
-
-        return notices;
+        String ans = new String(answer[0]);
+        return "ans";
     }
 
 }

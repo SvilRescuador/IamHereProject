@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.furkanozek.imhereproject.R;
@@ -16,9 +17,9 @@ public class ihbarListesi extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ihbar_listesi);
 
-        //TextView list = findViewById(R.id.textView5);
-        String text = "deneme";
-        //list.setText(text);
+        TextView list = findViewById(R.id.textView5);
+        String text = new String(Notices.findNotices(GuncelIhbar.getNeighborhoodCode()));
+        list.setText(text);
         /*for(int a = 0; a < Notices.findNotices(GuncelIhbar.getNeighborhoodCode()).size(); a++) {
             String newElement = new String(Notices.findNotices(GuncelIhbar.getNeighborhoodCode()).get(a));
             text += "\n" + newElement;

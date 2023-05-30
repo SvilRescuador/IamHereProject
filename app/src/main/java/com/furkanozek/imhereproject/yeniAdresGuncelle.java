@@ -217,15 +217,5 @@ public class yeniAdresGuncelle extends AppCompatActivity  {
     }
 
 
-    public static void setDistrictToCode(int dCode) {
-            neighborhoodCode = neighborhoodCode / 100;
-            neighborhoodCode = neighborhoodCode * 100 + dCode;
-            neighborhoodCode = neighborhoodCode * 100;
-        }
 
-    public static void setNeighborhoodToCode (int nCode) {
-            neighborhoodCode = neighborhoodCode / 100;
-            neighborhoodCode = neighborhoodCode * 100 + nCode;
-            //neighborhoodCode = neighborhoodCode * 100;
-        }
 }
