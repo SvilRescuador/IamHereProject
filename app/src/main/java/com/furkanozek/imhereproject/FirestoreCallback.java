@@ -1,5 +1,7 @@
 package com.furkanozek.imhereproject;
 
+import java.util.List;
+
 interface FirestoreCallback {
-    void onDataLoaded(String data);
+    void onDataLoaded(List<String> data);
 }

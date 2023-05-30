@@ -22,6 +22,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Notices {
@@ -61,7 +62,7 @@ public class Notices {
     }
 
     public static void findNotices(int neighborhoodCode, FirestoreCallback callback) {
-        StringBuilder dataBuilder = new StringBuilder();
+        List<String> dataList = new ArrayList<>();
         db.collection("notices")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -70,15 +71,16 @@ public class Notices {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> data = document.getData();
-                                dataBuilder.append(data.toString()).append("\n");
+                                dataList.add(data.toString()); // This will be the text displayed for each item in the list
                             }
-                            callback.onDataLoaded(dataBuilder.toString());
+                            callback.onDataLoaded(dataList);
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
     }
+
 
 
 }

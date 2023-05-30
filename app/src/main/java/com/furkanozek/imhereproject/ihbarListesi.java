@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.furkanozek.imhereproject.R;
+
+import java.util.List;
 
 
 public class ihbarListesi extends AppCompatActivity {
@@ -17,14 +21,18 @@ public class ihbarListesi extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ihbar_listesi);
 
-        TextView dataTextView = findViewById(R.id.textView5);  // assuming this is the id of your TextView
+        ListView listView = findViewById(R.id.list_view);  // assuming this is the id of your ListView
+
         Notices.findNotices(GuncelIhbar.getNeighborhoodCode(), new FirestoreCallback() {
-            @Override
-            public void onDataLoaded(String data) {
-                dataTextView.setText(data);
+            public void onDataLoaded(List<String> data) {
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                        ihbarListesi.this,
+                        android.R.layout.simple_list_item_1,  // This is a built-in layout for list items
+                        data
+                );
+                listView.setAdapter(adapter);
             }
         });
-
         /*for(int a = 0; a < Notices.findNotices(GuncelIhbar.getNeighborhoodCode()).size(); a++) {
             String newElement = new String(Notices.findNotices(GuncelIhbar.getNeighborhoodCode()).get(a));
             text += "\n" + newElement;
