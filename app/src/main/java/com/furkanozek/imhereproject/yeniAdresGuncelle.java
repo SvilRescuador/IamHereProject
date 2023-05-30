@@ -103,7 +103,7 @@ public class yeniAdresGuncelle extends AppCompatActivity  {
                     spinner4.setAdapter(adapter4);
 
                     districtCode = 1;
-
+                }
                 else if (selectedItem.equals("Gölbaşı") || selectedItem.equals("Saruhanlı") || selectedItem.equals("Turhal")) {
                     spinner4.setAdapter(adapter5);
 
