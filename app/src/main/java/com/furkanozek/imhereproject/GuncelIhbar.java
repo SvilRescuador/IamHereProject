@@ -8,21 +8,26 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class GuncelIhbar extends AppCompatActivity {
 
     private static int neighborhoodCode;
     private static int cityCode;
     private static int districtCode;
+    Spinner spinner2 ;
+    Spinner spinner3 ;
+    Spinner spinner4 ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guncel_ihbar);
 
+
         // Initialize the Spinner
-        Spinner spinner2 = findViewById(R.id.spinner2);
-        Spinner spinner3 = findViewById(R.id.spinner3);
-        Spinner spinner4 = findViewById(R.id.spinner5);
+         spinner2 = findViewById(R.id.spinner2);
+         spinner3 = findViewById(R.id.spinner3);
+         spinner4 = findViewById(R.id.spinner5);
 
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
                 R.array.spinner_itemsAnkara, android.R.layout.simple_spinner_item);
@@ -121,27 +126,11 @@ public class GuncelIhbar extends AppCompatActivity {
         neigborhoodListener neigborhoodListener = new neigborhoodListener();
         spinner4.setOnItemSelectedListener(neigborhoodListener);
 
-
-
-
-
-
         // Specify the layout to use when the list of choices appears
         adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-
-
-
-
-        // Apply the adapter to the spinner
-
-
-        // Specify the layout to use when the list of choices appears
+                // Specify the layout to use when the list of choices appears
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-
-
-
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -153,9 +142,23 @@ public class GuncelIhbar extends AppCompatActivity {
         // Apply the adapter to the spinner
         spinner2.setAdapter(adapter);
 
+
+
     }
 
     public void search (View view) {
+        /*if(!spinner2.isActivated()){
+            Toast.makeText(getApplicationContext(), "Please select city", Toast.LENGTH_SHORT).show();
+        }else if(!spinner3.isActivated()){
+            Toast.makeText(getApplicationContext(), "Please select district", Toast.LENGTH_SHORT).show();
+        }else if(!spinner4.isActivated()){
+            Toast.makeText(getApplicationContext(), "Please select district", Toast.LENGTH_SHORT).show();
+        }else{
+            Intent intent = new Intent(GuncelIhbar.this, ihbarListesi.class);
+            startActivity(intent);
+            finish();
+        }*/
+
         Intent intent = new Intent(GuncelIhbar.this, ihbarListesi.class);
         startActivity(intent);
         finish();
