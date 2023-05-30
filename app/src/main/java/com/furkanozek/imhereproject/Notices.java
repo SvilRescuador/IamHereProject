@@ -71,7 +71,11 @@ public class Notices {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> data = document.getData();
-                                dataList.add(data.toString()); // This will be the text displayed for each item in the list
+                                StringBuilder dataBuilder = new StringBuilder();
+                                for (Object value : data.values()) {
+                                    dataBuilder.append(value.toString()).append("\n");
+                                }
+                                dataList.add(dataBuilder.toString()); // This will be the text displayed for each item in the list
                             }
                             callback.onDataLoaded(dataList);
                         } else {
@@ -81,6 +85,8 @@ public class Notices {
                 });
     }
 
-
-
 }
+
+
+
+
