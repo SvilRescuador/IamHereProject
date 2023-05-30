@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,12 +26,6 @@ public class IhbarVer1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ihbar_ver1);
 
-        /* phoneNumber.findViewById(R.id.editTextTextPersonName12);
-        nameSurname.findViewById(R.id.editTextTextPersonName10);
-
-
-        phoneNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
-        phoneNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(11) }); */
 
 
         neighborhoodCode = 0;
@@ -175,10 +171,19 @@ public class IhbarVer1 extends AppCompatActivity {
         EditText buildingName = findViewById(R.id.editTextTextPersonName14);
         EditText nameSurname = findViewById(R.id.editTextTextPersonName10);
         EditText phoneNumber = findViewById(R.id.editTextTextPersonName12);
-        Notices.noticesDatabase(neighborhoodCode, buildingName.getText().toString(), nameSurname.getText().toString(), bloodType, sharedPreferences.getString("Name", null) + " " + sharedPreferences.getString("Surname", null), phoneNumber.getText().toString());
-        Toast.makeText(getApplicationContext(), "Notice is created", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(IhbarVer1.this, MainActivity.class);
-        startActivity(intent);
-        finish();
+
+        if(nameSurname.getText().toString().isEmpty()){
+            Toast.makeText(getApplicationContext(), "Please enter name and surname", Toast.LENGTH_SHORT).show();
+        }else if(phoneNumber.getText().toString().isEmpty() || phoneNumber.getText().toString().length() != 11){
+            Toast.makeText(getApplicationContext(), "Please enter valid phone number", Toast.LENGTH_SHORT).show();
+        }else if((neighborhoodCode <= 99999 || neighborhoodCode >= 111111)){
+            Toast.makeText(getApplicationContext(), "Please enter address", Toast.LENGTH_SHORT).show();
+        }else{
+            Notices.noticesDatabase(neighborhoodCode, buildingName.getText().toString(), nameSurname.getText().toString(), bloodType, sharedPreferences.getString("Name", null) + " " + sharedPreferences.getString("Surname", null), phoneNumber.getText().toString());
+            Toast.makeText(getApplicationContext(), "Notice is created", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(IhbarVer1.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }
