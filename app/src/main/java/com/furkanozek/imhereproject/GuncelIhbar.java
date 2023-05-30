@@ -23,7 +23,7 @@ public class GuncelIhbar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guncel_ihbar);
 
-
+        neighborhoodCode = 0 ;
         // Initialize the Spinner
          spinner2 = findViewById(R.id.spinner2);
          spinner3 = findViewById(R.id.spinner3);
@@ -147,21 +147,14 @@ public class GuncelIhbar extends AppCompatActivity {
     }
 
     public void search (View view) {
-        /*if(!spinner2.isActivated()){
-            Toast.makeText(getApplicationContext(), "Please select city", Toast.LENGTH_SHORT).show();
-        }else if(!spinner3.isActivated()){
-            Toast.makeText(getApplicationContext(), "Please select district", Toast.LENGTH_SHORT).show();
-        }else if(!spinner4.isActivated()){
-            Toast.makeText(getApplicationContext(), "Please select district", Toast.LENGTH_SHORT).show();
+        if(neighborhoodCode <= 99999 || neighborhoodCode >= 111111){
+            Toast.makeText(getApplicationContext(), "Please select address", Toast.LENGTH_SHORT).show();
         }else{
             Intent intent = new Intent(GuncelIhbar.this, ihbarListesi.class);
             startActivity(intent);
             finish();
-        }*/
+        }
 
-        Intent intent = new Intent(GuncelIhbar.this, ihbarListesi.class);
-        startActivity(intent);
-        finish();
     }
 
 
