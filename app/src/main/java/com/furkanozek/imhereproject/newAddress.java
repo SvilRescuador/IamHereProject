@@ -1,5 +1,5 @@
 package com.furkanozek.imhereproject;
-
+//This is the class where we create the addresses
 public class newAddress {
 
     private static final String[] cities = {"Ankara","Manisa","Tokat"};

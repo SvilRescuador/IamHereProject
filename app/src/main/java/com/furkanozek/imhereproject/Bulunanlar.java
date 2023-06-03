@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
+//In this class, actions are taken regarding the people who survived the wreckage.
 public class Bulunanlar extends AppCompatActivity {
 
     private static int neighborhoodCode;

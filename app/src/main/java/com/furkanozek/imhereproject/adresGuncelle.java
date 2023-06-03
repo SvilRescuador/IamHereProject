@@ -31,7 +31,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.HashMap;
 import java.util.Map;
 
-
+//this class gives the users a chance to change their current address
 public class adresGuncelle extends AppCompatActivity  {
 
     static boolean citySelected;

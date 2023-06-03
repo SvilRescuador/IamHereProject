@@ -14,7 +14,7 @@ import com.furkanozek.imhereproject.R;
 
 import java.util.List;
 
-
+//this class is responsible for displaying notifications
 public class ihbarListesi extends AppCompatActivity {
 
     @Override

@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
-
+//This class is the class where transactions related to current notifications are made.
 public class GuncelIhbar extends AppCompatActivity {
 
     private static int neighborhoodCode;

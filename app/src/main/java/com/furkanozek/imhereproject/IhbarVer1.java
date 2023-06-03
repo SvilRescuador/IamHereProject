@@ -14,7 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
+//This class is the class we receive notification from the user
 public class IhbarVer1 extends AppCompatActivity {
 
     private static int neighborhoodCode;

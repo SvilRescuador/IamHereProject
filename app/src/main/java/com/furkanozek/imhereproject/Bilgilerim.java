@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
+//In this class, operations related to the information of the users are performed.
 public class Bilgilerim extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;

@@ -43,7 +43,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+//This class is the class that provides the user interface and many operations are done
 public class EntranceScreen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
