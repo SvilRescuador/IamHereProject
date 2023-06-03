@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //Method that plays the siren when the logo on main screen is clicked.
     private void playSiren() {
         if (!mediaPlayer.isPlaying()) {
             mediaPlayer.start();
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //Listener of I Need Help button. Makes a notice with saved information.
     public void helpMe(View view){
 
 
@@ -83,16 +85,19 @@ public class MainActivity extends AppCompatActivity {
         isNoticed = true ;
     }
 
+    //Method that opens Make Notice screen
     public void ihbarVer(View view){
         Intent intent = new Intent(MainActivity.this, IhbarVer1.class);
         startActivity(intent);
     }
 
+    //Method that opens Current Notices screen
     public void guncelIhbar(View view){
         Intent intent = new Intent(MainActivity.this, GuncelIhbar.class);
         startActivity(intent);
     }
 
+    //Method that opens My Information Screen
     public void bilgiler(View view){
         Intent intent = new Intent(MainActivity.this, Bilgilerim.class);
         startActivity(intent);

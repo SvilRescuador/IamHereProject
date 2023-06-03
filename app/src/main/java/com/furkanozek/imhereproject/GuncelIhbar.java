@@ -41,8 +41,10 @@ public class GuncelIhbar extends AppCompatActivity {
                 R.array.spinner_items2ilceler, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> adapter6 = ArrayAdapter.createFromResource(this,
                 R.array.spinner_items3ilceler, android.R.layout.simple_spinner_item);
-        class cityListener implements AdapterView.OnItemSelectedListener {
 
+
+        //Listener for city spinner: determines the district spinner's items.
+        class cityListener implements AdapterView.OnItemSelectedListener {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
@@ -66,6 +68,7 @@ public class GuncelIhbar extends AppCompatActivity {
             }
         }
 
+        //Listener for district spinner: determines the neighborhood spinner's items.
         class districtListener implements AdapterView.OnItemSelectedListener {
 
             @Override
@@ -92,6 +95,7 @@ public class GuncelIhbar extends AppCompatActivity {
             }
         }
 
+        //Listener for neighborhood spinner: calculates the neighborhod code according to choosen city, district, neigborhood
         class neigborhoodListener implements AdapterView.OnItemSelectedListener {
 
             @Override
@@ -146,6 +150,7 @@ public class GuncelIhbar extends AppCompatActivity {
 
     }
 
+    //Method that opens the list of current notices. It warns the user if an address is not selected.
     public void search (View view) {
         if(neighborhoodCode <= 99999 || neighborhoodCode >= 133333){
             Toast.makeText(getApplicationContext(), "Please select address", Toast.LENGTH_SHORT).show();
@@ -164,6 +169,7 @@ public class GuncelIhbar extends AppCompatActivity {
         finish();
     }
 
+    //Method that opens the list of found people. It warns the user if an address is not selected.
     public void searchFound(View view) {
         if(neighborhoodCode <= 99999 || neighborhoodCode >= 133333){
             Toast.makeText(getApplicationContext(), "Please select address", Toast.LENGTH_SHORT).show();

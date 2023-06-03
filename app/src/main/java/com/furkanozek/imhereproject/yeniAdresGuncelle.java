@@ -31,14 +31,13 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class yeniAdresGuncelle extends AppCompatActivity  {
 
     static boolean citySelected;
     static final String nCode = "nCode";
     static boolean districtSelected;
     SharedPreferences sharedPreferences;
-    private static int neighborhoodCode;
+    private static int neighborhoodCode;//an integer that specifies a neighborhood of a district of a city
     private static int cityCode;
     private static int districtCode;
     EditText editText;
@@ -52,11 +51,12 @@ public class yeniAdresGuncelle extends AppCompatActivity  {
 
         citySelected = false;
         districtSelected = false;
-        // Initialize the Spinner
+        // Initialize the Spinners
         Spinner spinner2 = findViewById(R.id.spinner2);
         Spinner spinner3 = findViewById(R.id.spinner3);
         Spinner spinner4 = findViewById(R.id.spinner4);
 
+        // Initialize spinners' items
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
                 R.array.spinner_itemsAnkara, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
@@ -69,6 +69,8 @@ public class yeniAdresGuncelle extends AppCompatActivity  {
                 R.array.spinner_items2ilceler, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> adapter6 = ArrayAdapter.createFromResource(this,
                 R.array.spinner_items3ilceler, android.R.layout.simple_spinner_item);
+
+        //Listener for city spinner: determines the district spinner's items.
         class cityListener implements AdapterView.OnItemSelectedListener {
 
             @Override
@@ -94,6 +96,7 @@ public class yeniAdresGuncelle extends AppCompatActivity  {
             }
         }
 
+        //Listener for district spinner: determines the neighborhood spinner's items.
         class districtListener implements AdapterView.OnItemSelectedListener {
 
             @Override
@@ -122,6 +125,8 @@ public class yeniAdresGuncelle extends AppCompatActivity  {
             }
         }
 
+
+        //Listener for neighborhood spinner: calculates the neighborhod code according to choosen city, district, neigborhood
         class neigborhoodListener implements AdapterView.OnItemSelectedListener {
 
             @Override
@@ -183,8 +188,6 @@ public class yeniAdresGuncelle extends AppCompatActivity  {
     }
 
     public void save(View view) {
-
-
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(nCode, neighborhoodCode).apply();
         editor.putString("BuildingName", editText.getText().toString()).apply();
@@ -199,11 +202,6 @@ public class yeniAdresGuncelle extends AppCompatActivity  {
         Intent intent = new Intent(yeniAdresGuncelle.this, MainActivity.class);
         startActivity(intent);
         finish();
-    }
-
-
-    public static int getNeighborhoodCode(){
-        return neighborhoodCode;
     }
 
 

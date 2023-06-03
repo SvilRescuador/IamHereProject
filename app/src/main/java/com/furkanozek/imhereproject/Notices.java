@@ -30,6 +30,8 @@ import java.util.Map;
 public class Notices {
 
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    //Method for making notices on database with the given information
     public static void noticesDatabase(int nCode, String buildingName, String nameSurname, String bloodType, String noticeBy, String phoneNumber){
 
 
@@ -60,6 +62,7 @@ public class Notices {
 
     }
 
+    //Method for finding notices by filtering with a neighborhood code
     public static void findNotices(int neighborhoodCode, FirestoreCallback callback) {
         List<String> order = Arrays.asList("Name",  "BuildingName", "PhoneNumber", "BloodType", "noticeBy");
         List<String> dataList = new ArrayList<>();
@@ -100,6 +103,7 @@ public class Notices {
                 });
     }
 
+    //Method for making notices about the people who are found
     public static void informFoundPeople(int nCode, String buildingName, String nameSurname, String bloodType, String noticeBy, String phoneNumber){
 
 
@@ -131,6 +135,7 @@ public class Notices {
     }
 
 
+    //Method for searching found people in a neighborhood
     public static void findFounds(int neighborhoodCode, FirestoreCallback callback) {
         List<String> order = Arrays.asList("Name",  "BuildingName", "PhoneNumber", "BloodType", "noticeBy");
         List<String> dataList = new ArrayList<>();

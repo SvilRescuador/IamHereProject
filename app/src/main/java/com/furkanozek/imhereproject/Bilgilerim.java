@@ -33,7 +33,6 @@ public class Bilgilerim extends AppCompatActivity {
         phoneNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(11) });
 
         int nCode = sharedPreferences.getInt("nCode",20);
-        //int nCode = adresGuncelle.getNeighborhoodCode();
         name.setText(sharedPreferences.getString("Name",null) + " " + sharedPreferences.getString("Surname", null));
         bloodType.setText(sharedPreferences.getString("BloodType", null));
         ID.setText(sharedPreferences.getString("ID", null));
@@ -45,19 +44,20 @@ public class Bilgilerim extends AppCompatActivity {
 
     }
 
+    //Button listener that opens a screen for updating address
     public void changeAddress(View view) {
         Intent intent = new Intent(Bilgilerim.this, yeniAdresGuncelle.class);
         startActivity(intent);
         MainActivity.isNoticed = false ;
     }
 
+    //Button listener that saves changed phone number
     public void updateCred(View view) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if(phoneNumber.getText().toString().length() != 11) {
             Toast.makeText(getApplicationContext(), "Please enter correct phone number", Toast.LENGTH_SHORT).show();
         }else{
             editor.putString("PhoneNumber", phoneNumber.getText().toString()).apply();
-            //phoneNumber.setText(sharedPreferences.getString("PhoneNumber", null));
             Intent intent = new Intent(Bilgilerim.this, MainActivity.class);
             startActivity(intent);
         }
@@ -70,10 +70,5 @@ public class Bilgilerim extends AppCompatActivity {
         finish();
     }
 
-    /*private String decodeNCode(int nCode) {
-        sharedPreferences = getSharedPreferences(EntranceScreen.MyPREFERENCES, Context.MODE_PRIVATE);
-        String addressText = newAddress.findCityByCode(nCode) + " " + newAddress.findDistrictByCode(nCode) + " " + newAddress.findNeighborhoodByCode(nCode) +
-                sharedPreferences.getString("BuildingName", null);
-        return addressText;
-    }*/
+
 }

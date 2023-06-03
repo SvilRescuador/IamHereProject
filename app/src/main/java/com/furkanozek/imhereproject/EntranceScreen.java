@@ -106,6 +106,7 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
 
     }
 
+    //Blood type listener
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // Get the selected item's text
@@ -123,6 +124,7 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
         // Do nothing
     }
 
+    //Method that registers the user with given information.
     public void signUp (View view) {
 
         String enteredID = ID.getText().toString().trim();
@@ -171,6 +173,7 @@ public class EntranceScreen extends AppCompatActivity implements AdapterView.OnI
 
     }
 
+    //Method that loads valid ID an name pairs from the file.
     private void loadValidIDNamePairs() throws IOException {
 
         InputStream inputStream = getAssets().open("IDs.txt");

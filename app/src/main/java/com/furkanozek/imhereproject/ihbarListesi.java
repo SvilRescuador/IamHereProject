@@ -39,6 +39,7 @@ public class ihbarListesi extends AppCompatActivity {
         finish();
     }
 
+    //Method that opens the List of found people
     public void inform(View view) {
         Intent intent = new Intent(ihbarListesi.this, Bulunanlar.class);
         startActivity(intent);

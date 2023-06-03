@@ -49,9 +49,9 @@ public class Bulunanlar extends AppCompatActivity {
                 R.array.spinner_items2ilceler, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> adapter6 = ArrayAdapter.createFromResource(this,
                 R.array.spinner_items3ilceler, android.R.layout.simple_spinner_item);
+
+        //Listener for city spinner: determines the district spinner's items.
         class cityListener implements AdapterView.OnItemSelectedListener {
-
-
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -76,6 +76,7 @@ public class Bulunanlar extends AppCompatActivity {
             }
         }
 
+        //Listener for district spinner: determines the neighborhood spinner's items.
         class districtListener implements AdapterView.OnItemSelectedListener {
 
             @Override
@@ -102,6 +103,7 @@ public class Bulunanlar extends AppCompatActivity {
             }
         }
 
+        //Listener for neighborhood spinner: calculates the neighborhod code according to choosen city, district, neigborhood
         class neigborhoodListener implements AdapterView.OnItemSelectedListener {
 
             @Override
